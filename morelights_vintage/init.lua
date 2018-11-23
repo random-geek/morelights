@@ -233,61 +233,61 @@ minetest.register_craft({
 minetest.register_craft({
   output = "morelights_vintage:chain_b",
   recipe = {
-    {'', 'morelights_vintage:brass_ingot', ''},
-    {'', '', ''},
-    {'', 'morelights_vintage:brass_ingot', ''}
+    {"", "morelights_vintage:brass_ingot", ""},
+    {"", "", ""},
+    {"", "morelights_vintage:brass_ingot", ""}
   }
 })
 
 minetest.register_craft({
   output = "morelights_vintage:block",
   recipe = {
-    {'', 'default:junglewood', ''},
-    {morelights.glass, 'morelights:bulb', morelights.glass},
-    {'', 'default:junglewood', ''}
+    {"", "default:junglewood", ""},
+    {morelights.glass, "morelights:bulb", morelights.glass},
+    {"", "default:junglewood", ""}
   }
 })
 
 minetest.register_craft({
   output = "morelights_vintage:smallblock",
   recipe = {
-    {'', morelights.glass, ''},
-    {'default:junglewood', 'morelights:bulb', 'default:junglewood'}
+    {"", morelights.glass, ""},
+    {"default:junglewood", "morelights:bulb", "default:junglewood"}
   }
 })
 
 minetest.register_craft({
   output = "morelights_vintage:lantern_f",
   recipe = {
-    {'', 'default:steel_ingot', ''},
-    {morelights.glass, 'morelights:bulb', morelights.glass},
-    {'default:stick', 'default:steel_ingot', 'default:stick'}
+    {"", "default:steel_ingot", ""},
+    {morelights.glass, "morelights:bulb", morelights.glass},
+    {"default:stick", "default:steel_ingot", "default:stick"}
   }
 })
 
 minetest.register_craft({
   output = "morelights_vintage:hangingbulb",
   recipe = {
-    {'', 'default:steel_ingot', ''},
-    {'', 'default:copper_ingot', ''},
-    {'', 'morelights:bulb', ''}
+    {"", "default:steel_ingot", ""},
+    {"", "default:copper_ingot", ""},
+    {"", "morelights:bulb", ""}
   }
 })
 
 minetest.register_craft({
   output = "morelights_vintage:oillamp",
   recipe = {
-    {'', 'default:glass', ''},
-    {'farming:cotton', 'morelights_vintage:brass_ingot', ''},
-    {'', 'default:glass', ''}
+    {"", "default:glass", ""},
+    {"farming:cotton", "morelights_vintage:brass_ingot", ""},
+    {"", "default:glass", ""}
   }
 })
 
 minetest.register_craft({
   output = "morelights_vintage:chandelier",
   recipe = {
-    {'', 'morelights_vintage:brass_ingot', ''},
-    {'morelights:bulb', 'morelights_vintage:brass_ingot', 'morelights:bulb'},
-    {'default:steel_ingot', 'morelights_vintage:brass_ingot', 'default:steel_ingot'}
+    {"", "morelights_vintage:brass_ingot", ""},
+    {"morelights:bulb", "morelights_vintage:brass_ingot", "morelights:bulb"},
+    {"default:steel_ingot", "morelights_vintage:brass_ingot", "default:steel_ingot"}
   }
 })
