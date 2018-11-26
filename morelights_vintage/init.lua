@@ -1,7 +1,21 @@
-minetest.register_craftitem("morelights_vintage:brass_ingot", {
-  description = "Brass Ingot",
-  inventory_image = "default_steel_ingot.png^[multiply:#FFCE69"
-})
+
+-- brass/basic_materials compat
+
+local has_basic_materials = minetest.get_modpath("basic_materials")
+local brass_ingot_name = "morelights_vintage:brass_ingot"
+
+if has_basic_materials then
+	-- use brass ingot from basic_materials
+	brass_ingot_name = "basic_materials:brass_ingot"
+
+else
+	-- use internal brass ingot
+	minetest.register_craftitem(brass_ingot_name, {
+	  description = "Brass Ingot",
+	  inventory_image = "default_steel_ingot.png^[multiply:#FFCE69"
+	})
+
+end
 
 minetest.register_node("morelights_vintage:chain_b", {
   description = "Brass Chain",
@@ -223,7 +237,7 @@ minetest.register_node("morelights_vintage:chandelier", {
 --
 
 minetest.register_craft({
-  output = "morelights_vintage:brass_ingot 2",
+  output = brass_ingot_name .. " 2",
   type = "shapeless",
   recipe = {
     "default:copper_ingot", "default:tin_ingot"
@@ -233,9 +247,9 @@ minetest.register_craft({
 minetest.register_craft({
   output = "morelights_vintage:chain_b",
   recipe = {
-    {"", "morelights_vintage:brass_ingot", ""},
+    {"", brass_ingot_name, ""},
     {"", "", ""},
-    {"", "morelights_vintage:brass_ingot", ""}
+    {"", brass_ingot_name, ""}
   }
 })
 
@@ -278,7 +292,7 @@ minetest.register_craft({
   output = "morelights_vintage:oillamp",
   recipe = {
     {"", "default:glass", ""},
-    {"farming:cotton", "morelights_vintage:brass_ingot", ""},
+    {"farming:cotton", brass_ingot_name, ""},
     {"", "default:glass", ""}
   }
 })
@@ -286,8 +300,8 @@ minetest.register_craft({
 minetest.register_craft({
   output = "morelights_vintage:chandelier",
   recipe = {
-    {"", "morelights_vintage:brass_ingot", ""},
-    {"morelights:bulb", "morelights_vintage:brass_ingot", "morelights:bulb"},
-    {"default:steel_ingot", "morelights_vintage:brass_ingot", "default:steel_ingot"}
+    {"", brass_ingot_name, ""},
+    {"morelights:bulb", brass_ingot_name, "morelights:bulb"},
+    {"default:steel_ingot", brass_ingot_name, "default:steel_ingot"}
   }
 })
