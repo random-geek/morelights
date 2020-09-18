@@ -4,22 +4,30 @@ minetest.register_craftitem("morelights:bulb", {
 })
 
 morelights.register_variants({
-    {name = "morelights:pole_d", description = "Metal Pole (dark)",
+    {
+        name = "morelights:pole_d",
+        description = "Metal Pole (dark)",
         tiles = {"morelights_metal_dark_32.png"},
         inventory_image = "morelights_pole_d_inv.png",
         wield_image = "morelights_pole_d_inv.png",
+
         on_place = function(itemstack, placer, pointed_thing)
-            return morelights.on_place_hanging(itemstack, placer, pointed_thing,
-                "morelights:pole_ceiling_d")
-        end},
-    {name = "morelights:pole_l", description = "Metal Pole (light)",
+            return morelights.on_place_hanging(itemstack, placer,
+                    pointed_thing, "morelights:pole_ceiling_d")
+        end
+    },
+    {
+        name = "morelights:pole_l",
+        description = "Metal Pole (light)",
         tiles = {"morelights_metal_light_32.png"},
         inventory_image = "morelights_pole_l_inv.png",
         wield_image = "morelights_pole_l_inv.png",
+
         on_place = function(itemstack, placer, pointed_thing)
-            return morelights.on_place_hanging(itemstack, placer, pointed_thing,
-                "morelights:pole_ceiling_l")
-        end}
+            return morelights.on_place_hanging(itemstack, placer,
+                    pointed_thing, "morelights:pole_ceiling_l")
+        end
+    }
 },
 {
     drawtype = "nodebox",
@@ -41,10 +49,16 @@ morelights.register_variants({
 })
 
 morelights.register_variants({
-    {name = "morelights:pole_ceiling_d",
-        tiles = {"morelights_metal_dark_32.png"}, drop = "morelights:pole_d"},
-    {name = "morelights:pole_ceiling_l",
-        tiles = {"morelights_metal_light_32.png"}, drop = "morelights:pole_l"}
+    {
+        name = "morelights:pole_ceiling_d",
+        tiles = {"morelights_metal_dark_32.png"},
+        drop = "morelights:pole_d"
+    },
+    {
+        name = "morelights:pole_ceiling_l",
+        tiles = {"morelights_metal_light_32.png"},
+        drop = "morelights:pole_l"
+    }
 },
 {
     drawtype = "nodebox",
@@ -68,22 +82,29 @@ morelights.register_variants({
 })
 
 morelights.register_variants({
-    {name = "morelights:chain_d", description = "Metal Chain (dark)",
+    {
+        name = "morelights:chain_d",
+        description = "Metal Chain (dark)",
         tiles = {"morelights_metal_dark_32.png"},
         inventory_image = "morelights_chain_d_inv.png",
         wield_image = "morelights_chain_d_inv.png",
+
         on_place = function(itemstack, placer, pointed_thing)
             return morelights.on_place_hanging(itemstack, placer, pointed_thing,
                 "morelights:chain_ceiling_d")
         end},
-    {name = "morelights:chain_l", description = "Metal Chain (light)",
+    {
+        name = "morelights:chain_l",
+        description = "Metal Chain (light)",
         tiles = {"morelights_metal_light_32.png"},
         inventory_image = "morelights_chain_l_inv.png",
         wield_image = "morelights_chain_l_inv.png",
+
         on_place = function(itemstack, placer, pointed_thing)
             return morelights.on_place_hanging(itemstack, placer, pointed_thing,
                 "morelights:chain_ceiling_l")
-        end}
+        end
+    }
 },
 {
     drawtype = "mesh",
@@ -103,10 +124,16 @@ morelights.register_variants({
 })
 
 morelights.register_variants({
-    {name = "morelights:chain_ceiling_d",
-        tiles = {"morelights_metal_dark_32.png"}, drop = "morelights:chain_d"},
-    {name = "morelights:chain_ceiling_l",
-        tiles = {"morelights_metal_light_32.png"}, drop = "morelights:chain_l"}
+    {
+        name = "morelights:chain_ceiling_d",
+        tiles = {"morelights_metal_dark_32.png"},
+        drop = "morelights:chain_d"
+    },
+    {
+        name = "morelights:chain_ceiling_l",
+        tiles = {"morelights_metal_light_32.png"},
+        drop = "morelights:chain_l"
+    }
 },
 {
     drawtype = "mesh",

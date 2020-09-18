@@ -9,8 +9,10 @@ minetest.register_node("morelights_extras:f_block", {
 
 minetest.register_node("morelights_extras:dirt_with_grass", {
     description = "Grass Light",
-    tiles = {"default_grass.png^morelights_extras_blocklight.png",
-        "default_dirt.png", "default_dirt.png^default_grass_side.png"},
+    tiles = {
+        "default_grass.png^morelights_extras_blocklight.png",
+        "default_dirt.png", "default_dirt.png^default_grass_side.png"
+    },
     paramtype = "light",
     light_source = 12,
     groups = {cracky = 2, oddly_breakable_by_hand = 3},
@@ -49,7 +51,7 @@ minetest.register_node("morelights_extras:stairlight", {
     walkable = false,
     tiles = {"morelights_metal_dark.png"},
     overlay_tiles = {"", "morelights_extras_stairlight.png",
-        "", "", "morelights_extras_stairlight.png"},
+            "", "", "morelights_extras_stairlight.png"},
     inventory_image = "morelights_extras_stairlight_inv.png",
     wield_image = "morelights_extras_stairlight_inv.png",
     paramtype = "light",

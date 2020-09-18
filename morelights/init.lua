@@ -5,7 +5,7 @@ function morelights.register_variants(variants, fixedDef)
         local name = variant.name
         local def = table.copy(fixedDef)
 
-        for k,v in pairs(variant) do
+        for k, v in pairs(variant) do
             if k ~= "name" then
                 def[k] = v
             end
@@ -15,7 +15,8 @@ function morelights.register_variants(variants, fixedDef)
     end
 end
 
-function morelights.on_place_hanging(itemstack, placer, pointed_thing, replaceName)
+function morelights.on_place_hanging(itemstack, placer, pointed_thing,
+            replaceName)
     local ceiling = minetest.get_node(vector.add(pointed_thing.above,
         {x=0, y=1, z=0}))
 
@@ -24,10 +25,10 @@ function morelights.on_place_hanging(itemstack, placer, pointed_thing, replaceNa
         and not (placer and placer:get_player_control().sneak) then
 
         local name = itemstack:get_name()
-        local fakestack = itemstack
-        fakestack:set_name(replaceName)
+        local fakeStack = itemstack
+        fakeStack:set_name(replaceName)
 
-        minetest.item_place(fakestack, placer, pointed_thing, 0)
+        minetest.item_place(fakeStack, placer, pointed_thing, 0)
         itemstack:set_name(name)
 
         return itemstack
@@ -38,7 +39,8 @@ function morelights.on_place_hanging(itemstack, placer, pointed_thing, replaceNa
 end
 
 function morelights.rotate_and_place(itemstack, placer, pointed_thing, lookup)
-    local dir = minetest.dir_to_wallmounted(vector.subtract(pointed_thing.under, pointed_thing.above))
+    local dir = minetest.dir_to_wallmounted(
+            vector.subtract(pointed_thing.under, pointed_thing.above))
     local fDirs = lookup or {[0] = 20, 0, 16, 12, 8, 4}
     minetest.item_place(itemstack, placer, pointed_thing, fDirs[dir] or 0)
     return itemstack

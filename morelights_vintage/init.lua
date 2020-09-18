@@ -46,19 +46,23 @@ minetest.register_node("morelights_vintage:chain_ceiling_b", {
     mesh = "morelights_chain_ceiling.obj",
     collision_box = {
         type = "fixed",
-        fixed = {{-3/16,  7/16, -3/16, 3/16,  8/16, 3/16},
-            {-1/16, -8/16, -1/16, 1/16, 7/16, 1/16}}
+        fixed = {
+            {-3/16,  7/16, -3/16, 3/16,  8/16, 3/16},
+            {-1/16, -8/16, -1/16, 1/16, 7/16, 1/16}
+        }
     },
     selection_box = {
         type = "fixed",
-        fixed = {{-3/16,  7/16, -3/16, 3/16,  8/16, 3/16},
-            {-1/16, -8/16, -1/16, 1/16, 7/16, 1/16}}
+        fixed = {
+            {-3/16,  7/16, -3/16, 3/16,  8/16, 3/16},
+            {-1/16, -8/16, -1/16, 1/16, 7/16, 1/16}
+        }
     },
     tiles = {"morelights_vintage_brass_32.png"},
     drop = "morelights_vintage:chain_b",
     paramtype = "light",
     groups = {cracky = 3, oddly_breakable_by_hand = 3,
-        not_in_creative_inventory = 1, mounted_ceiling = 1},
+            not_in_creative_inventory = 1, mounted_ceiling = 1},
     sounds = default.node_sound_metal_defaults(),
 })
 
@@ -78,13 +82,17 @@ minetest.register_node("morelights_vintage:smallblock", {
         type = "fixed",
         fixed = {-1/4, -1/2, -1/4, 1/4, 0, 1/4}
     },
-    tiles = {"morelights_vintage_block.png", "morelights_vintage_block.png",
-        "[combine:16x16:0,4=morelights_vintage_block.png"},
+    tiles = {
+        "morelights_vintage_block.png",
+        "morelights_vintage_block.png",
+        "[combine:16x16:0,4=morelights_vintage_block.png"
+    },
     paramtype = "light",
     paramtype2 = "facedir",
     light_source = 12,
     groups = {cracky = 2, oddly_breakable_by_hand = 3},
     sounds = default.node_sound_glass_defaults(),
+
     on_place = function(itemstack, placer, pointed_thing)
         return morelights.rotate_and_place(itemstack, placer, pointed_thing)
     end,
@@ -94,7 +102,10 @@ minetest.register_node("morelights_vintage:lantern_f", {
     description = "Vintage Lantern (floor, wall, or ceiling)",
     drawtype = "mesh",
     mesh = "morelights_vintage_lantern_f.obj",
-    tiles = {"morelights_vintage_lantern.png", "morelights_metal_dark_32.png"},
+    tiles = {
+        "morelights_vintage_lantern.png",
+        "morelights_metal_dark_32.png"
+    },
     collision_box = {
         type = "fixed",
         fixed = {-3/16, -1/2, -3/16, 3/16, 1/16, 3/16}
@@ -110,7 +121,7 @@ minetest.register_node("morelights_vintage:lantern_f", {
 
     on_place = function(itemstack, placer, pointed_thing)
         local wdir = minetest.dir_to_wallmounted(
-            vector.subtract(pointed_thing.under, pointed_thing.above))
+                vector.subtract(pointed_thing.under, pointed_thing.above))
         local fakestack = itemstack
 
         if wdir == 0 then
@@ -151,7 +162,10 @@ minetest.register_node("morelights_vintage:lantern_c", {
 minetest.register_node("morelights_vintage:lantern_w", {
     drawtype = "mesh",
     mesh = "morelights_vintage_lantern_w.obj",
-    tiles = {"morelights_vintage_lantern.png", "morelights_metal_dark_32.png"},
+    tiles = {
+        "morelights_vintage_lantern.png",
+        "morelights_metal_dark_32.png"
+    },
     collision_box = {
         type = "fixed",
         fixed = {-3/16, -1/4, -5/16, 3/16, 1/8, 3/16}
@@ -175,7 +189,10 @@ minetest.register_node("morelights_vintage:hangingbulb", {
     description = "Vintage Hanging Light Bulb",
     drawtype = "mesh",
     mesh = "morelights_vintage_hangingbulb.obj",
-    tiles = {"morelights_vintage_hangingbulb.png^[lowpart:50:morelights_metal_dark_32.png"},
+    tiles = {
+        "morelights_vintage_hangingbulb.png" ..
+                "^[lowpart:50:morelights_metal_dark_32.png"
+    },
     inventory_image = "morelights_vintage_hangingbulb_inv.png",
     wield_image = "morelights_vintage_hangingbulb_inv.png",
     use_texture_alpha = true,
@@ -197,10 +214,19 @@ minetest.register_node("morelights_vintage:oillamp", {
     description = "Vintage Oil Lamp",
     drawtype = "mesh",
     mesh = "morelights_vintage_oillamp.obj",
-    tiles = {{name = "morelights_vintage_oil_flame.png",
-        animation = {type = "sheet_2d", frames_w = 16, frames_h = 1, frame_length = 0.3}},
+    tiles = {
+        {
+            name = "morelights_vintage_oil_flame.png",
+            animation = {
+                type = "sheet_2d",
+                frames_w = 16,
+                frames_h = 1,
+                frame_length = 0.3
+            }
+        },
         "morelights_vintage_oillamp.png",
-        "morelights_vintage_brass_32.png"},
+        "morelights_vintage_brass_32.png"
+    },
     collision_box = {
         type = "fixed",
         fixed = {-1/8, -1/2, -1/8, 1/8, 1/4, 1/8}
@@ -219,8 +245,10 @@ minetest.register_node("morelights_vintage:chandelier", {
     description = "Vintage Chandelier",
     drawtype = "mesh",
     mesh = "morelights_vintage_chandelier.obj",
-    tiles = {"morelights_vintage_chandelier.png",
-        "morelights_vintage_brass_32.png^[multiply:#DFDFDF"},
+    tiles = {
+        "morelights_vintage_chandelier.png",
+        "morelights_vintage_brass_32.png^[multiply:#DFDFDF"
+    },
     collision_box = {
         type = "fixed",
         fixed = {-3/8, -1/2, -3/8, 3/8, 1/2, 3/8}
