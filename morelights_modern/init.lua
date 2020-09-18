@@ -224,8 +224,9 @@ morelights.register_variants({
         description = "Modern Table Lamp (dark)",
         tiles = {
             "morelights_metal_light_32.png^morelights_modern_tablelamp_o.png",
-            "morelights_modern_tablelamp_d.png"}
-        },
+            "morelights_modern_tablelamp_d.png"
+        }
+    },
     {
         name = "morelights_modern:tablelamp_l",
         description = "Modern Table Lamp (light)",
@@ -272,9 +273,11 @@ morelights.register_variants({
     drawtype = "nodebox",
     node_box = {
         type = "fixed",
-        fixed = {{-1/32, -8/16, -1/32, 1/32, 1/8, 1/32},
+        fixed = {
+            {-1/32, -8/16, -1/32, 1/32, 1/8, 1/32},
             {-1/16, 1/8, -1/16, 1/16, 5/16, 1/16},
-            {-1/8, 5/16, -1/8, 1/8, 3/8, 1/8}}
+            {-1/8, 5/16, -1/8, 1/8, 3/8, 1/8}
+        }
     },
     selection_box = {
         type = "fixed",

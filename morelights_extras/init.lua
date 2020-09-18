@@ -11,7 +11,8 @@ minetest.register_node("morelights_extras:dirt_with_grass", {
     description = "Grass Light",
     tiles = {
         "default_grass.png^morelights_extras_blocklight.png",
-        "default_dirt.png", "default_dirt.png^default_grass_side.png"
+        "default_dirt.png",
+        "default_dirt.png^default_grass_side.png"
     },
     paramtype = "light",
     light_source = 12,
