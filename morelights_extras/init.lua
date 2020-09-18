@@ -80,45 +80,47 @@ minetest.register_node("morelights_extras:stairlight", {
 -- Craft recipes
 --
 
+local a = morelights.craft_items
+
 minetest.register_craft({
     output = "morelights_extras:f_block",
     recipe = {
-        {"default:mese_crystal_fragment", "default:steel_ingot", "default:mese_crystal_fragment"},
-        {morelights.glass, "morelights:bulb", morelights.glass},
-        {"default:mese_crystal_fragment", "default:steel_ingot", "default:mese_crystal_fragment"}
+        {a.mese_fragment, a.steel, a.mese_fragment},
+        {a.glass_pane, "morelights:bulb", a.glass_pane},
+        {a.mese_fragment, a.steel, a.mese_fragment}
     }
 })
 
 minetest.register_craft({
     output = "morelights_extras:dirt_with_grass",
     recipe = {
-        {"", morelights.glass, ""},
+        {"", a.glass_pane, ""},
         {"", "morelights:bulb", ""},
-        {"default:grass_1", "default:dirt", ""}
+        {a.grass, a.dirt, ""}
     }
 })
 
 minetest.register_craft({
     output = "morelights_extras:stone_block",
     recipe = {
-        {"", morelights.glass, ""},
+        {"", a.glass_pane, ""},
         {"", "morelights:bulb", ""},
-        {"", "default:stone_block", ""}
+        {"", a.stone_block, ""}
     }
 })
 
 minetest.register_craft({
     output = "morelights_extras:sandstone_block",
     recipe = {
-        {"", morelights.glass, ""},
+        {"", a.glass_pane, ""},
         {"", "morelights:bulb", ""},
-        {"", "default:sandstone_block", ""}
+        {"", a.sandstone_block, ""}
     }
 })
 
 minetest.register_craft({
     output = "morelights_extras:stairlight",
     recipe = {
-        {"default:steel_ingot", "morelights:bulb", "default:steel_ingot"}
+        {a.steel, "morelights:bulb", a.steel}
     }
 })

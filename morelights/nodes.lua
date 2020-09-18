@@ -132,47 +132,49 @@ morelights.register_variants({
 -- Craft recipes
 --
 
+local a = morelights.craft_items
+
 minetest.register_craft({
     output = "morelights:bulb",
     recipe = {
-        {"", "default:glass", ""},
-        {"", "default:copper_ingot", ""},
-        {"", "default:steel_ingot", ""}
+        {"", a.glass, ""},
+        {"", a.copper, ""},
+        {"", a.steel, ""}
     }
 })
 
 minetest.register_craft({
     output = "morelights:pole_d 2",
     recipe = {
-        {"dye:dark_grey", "default:steel_ingot", ""},
-        {"", "default:steel_ingot", ""},
-        {"", "default:steel_ingot", ""}
+        {a.dye_dark, a.steel, ""},
+        {"", a.steel, ""},
+        {"", a.steel, ""}
     }
 })
 
 minetest.register_craft({
     output = "morelights:pole_l 2",
     recipe = {
-        {"dye:white", "default:steel_ingot", ""},
-        {"", "default:steel_ingot", ""},
-        {"", "default:steel_ingot", ""}
+        {a.dye_light, a.steel, ""},
+        {"", a.steel, ""},
+        {"", a.steel, ""}
     }
 })
 
 minetest.register_craft({
     output = "morelights:chain_d",
     recipe = {
-        {"dye:dark_grey", "default:steel_ingot", ""},
+        {a.dye_dark, a.steel, ""},
         {"", "", ""},
-        {"", "default:steel_ingot", ""}
+        {"", a.steel, ""}
     }
 })
 
 minetest.register_craft({
     output = "morelights:chain_l",
     recipe = {
-        {"dye:white", "default:steel_ingot", ""},
+        {a.dye_light, a.steel, ""},
         {"", "", ""},
-        {"", "default:steel_ingot", ""}
+        {"", a.steel, ""}
     }
 })

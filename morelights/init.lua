@@ -1,11 +1,5 @@
 morelights = {}
 
-if minetest.get_modpath("xpanes") then
-    morelights.glass = "xpanes:pane_flat"
-else
-    morelights.glass = "default:glass"
-end
-
 function morelights.register_variants(variants, fixedDef)
     for _, variant in ipairs(variants) do
         local name = variant.name
@@ -50,6 +44,34 @@ function morelights.rotate_and_place(itemstack, placer, pointed_thing, lookup)
     return itemstack
 end
 
+
+morelights.craft_items = {
+    glass = "default:glass",
+    glass_pane = "default:glass",
+    steel = "default:steel_ingot",
+    copper = "default:copper_ingot",
+    mese_fragment = "default:mese_crystal_fragment",
+    dye_dark = "dye:dark_grey",
+    dye_light = "dye:white",
+    wool_dark = "wool:dark_grey",
+    wool_light = "wool:white",
+    wood_dark = "default:junglewood",
+    cotton = "farming:cotton",
+    dirt = "default:dirt",
+    stone_block = "default:stone_block",
+    sandstone_block = "default:sandstone_block",
+    grass = "default:grass_1",
+}
+
+if minetest.get_modpath("xpanes") then
+    morelights.craft_items.glass_pane = "xpanes:pane_flat"
+end
+
+-- Use basic_materials brass if available, otherwise register our own.
+if minetest.get_modpath("basic_materials") then
+    morelights.craft_items.brass = "basic_materials:brass_ingot"
+end
+
 local path = minetest.get_modpath("morelights")
 
-dofile(path .. "/nodes.lua")
+dofile(path .. DIR_DELIM .. "nodes.lua")

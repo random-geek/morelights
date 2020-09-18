@@ -237,64 +237,66 @@ morelights.register_variants({
 -- Craft recipes
 --
 
+local a = morelights.craft_items
+
 minetest.register_craft({
     output = "morelights_modern:block",
     recipe = {
-        {"", "default:steel_ingot", ""},
-        {morelights.glass, "morelights:bulb", morelights.glass},
-        {"", "default:steel_ingot", ""}
+        {"", a.steel, ""},
+        {a.glass_pane, "morelights:bulb", a.glass_pane},
+        {"", a.steel, ""}
     }
 })
 
 minetest.register_craft({
     output = "morelights_modern:smallblock",
     recipe = {
-        {"", morelights.glass, ""},
-        {"default:steel_ingot", "morelights:bulb", "default:steel_ingot"}
+        {"", a.glass_pane, ""},
+        {a.steel, "morelights:bulb", a.steel}
     }
 })
 
 minetest.register_craft({
     output = "morelights_modern:post_d",
     recipe = {
-        {"dye:dark_grey", "default:steel_ingot", ""},
+        {a.dye_dark, a.steel, ""},
         {"", "morelights:bulb", ""},
-        {"", "default:steel_ingot", ""}
+        {"", a.steel, ""}
     }
 })
 
 minetest.register_craft({
     output = "morelights_modern:post_l",
     recipe = {
-        {"dye:white", "default:steel_ingot", ""},
+        {a.dye_light, a.steel, ""},
         {"", "morelights:bulb", ""},
-        {"", "default:steel_ingot", ""}
+        {"", a.steel, ""}
     }
 })
 
 minetest.register_craft({
     output = "morelights_modern:streetpost_d 2",
     recipe = {
-        {"dye:dark_grey", "default:steel_ingot", "default:steel_ingot"},
-        {"", "default:steel_ingot", ""},
-        {"", "default:steel_ingot", ""}
+        {a.dye_dark, a.steel, a.steel},
+        {"", a.steel, ""},
+        {"", a.steel, ""}
     }
 })
 
 minetest.register_craft({
     output = "morelights_modern:streetpost_l 2",
     recipe = {
-        {"dye:white", "default:steel_ingot", "default:steel_ingot"},
-        {"", "default:steel_ingot", ""},
-        {"", "default:steel_ingot", ""}
+        {a.dye_light, a.steel, a.steel},
+        {"", a.steel, ""},
+        {"", a.steel, ""}
     }
 })
 
 minetest.register_craft({
     output = "morelights_modern:barlight_c 4",
     recipe = {
-        {"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
-        {"default:copper_ingot", "default:glass", "default:copper_ingot"}
+        {a.steel, a.steel, a.steel},
+        {a.copper, a.glass, a.copper}
     }
 })
 
@@ -313,68 +315,68 @@ minetest.register_craft({
 minetest.register_craft({
     output = "morelights_modern:ceilinglight",
     recipe = {
-        {"default:steel_ingot", "morelights:bulb", "default:steel_ingot"},
-        {"", morelights.glass, ""},
+        {a.steel, "morelights:bulb", a.steel},
+        {"", a.glass_pane, ""},
     }
 })
 
 minetest.register_craft({
     output = "morelights_modern:canlight_d",
     recipe = {
-        {"dye:dark_grey", "default:steel_ingot", ""},
-        {"default:steel_ingot", "morelights:bulb", "default:steel_ingot"},
+        {a.dye_dark, a.steel, ""},
+        {a.steel, "morelights:bulb", a.steel},
     }
 })
 
 minetest.register_craft({
     output = "morelights_modern:canlight_l",
     recipe = {
-        {"dye:white", "default:steel_ingot", ""},
-        {"default:steel_ingot", "morelights:bulb", "default:steel_ingot"},
+        {a.dye_light, a.steel, ""},
+        {a.steel, "morelights:bulb", a.steel},
     }
 })
 
 minetest.register_craft({
     output = "morelights_modern:walllamp",
     recipe = {
-        {"dye:white", morelights.glass, ""},
-        {morelights.glass, "morelights:bulb", "default:steel_ingot"},
-        {"", "dye:dark_grey", "default:steel_ingot"}
+        {a.dye_light, a.glass_pane, ""},
+        {a.glass_pane, "morelights:bulb", a.steel},
+        {"", a.dye_dark, a.steel}
     }
 })
 
 minetest.register_craft({
     output = "morelights_modern:tablelamp_d",
     recipe = {
-        {"wool:dark_grey", "morelights:bulb", "wool:dark_grey"},
-        {"", "default:steel_ingot", ""},
-        {"", "default:steel_ingot", ""}
+        {a.wool_dark, "morelights:bulb", a.wool_dark},
+        {"", a.steel, ""},
+        {"", a.steel, ""}
     }
 })
 
 minetest.register_craft({
     output = "morelights_modern:tablelamp_l",
     recipe = {
-        {"wool:white", "morelights:bulb", "wool:white"},
-        {"", "default:steel_ingot", ""},
-        {"", "default:steel_ingot", ""}
+        {a.wool_light, "morelights:bulb", a.wool_light},
+        {"", a.steel, ""},
+        {"", a.steel, ""}
     }
 })
 
 minetest.register_craft({
     output = "morelights_modern:pathlight_d",
     recipe = {
-        {"dye:dark_grey", "morelights:bulb", ""},
-        {"", "default:steel_ingot", ""},
-        {"", "default:steel_ingot", ""}
+        {a.dye_dark, "morelights:bulb", ""},
+        {"", a.steel, ""},
+        {"", a.steel, ""}
     }
 })
 
 minetest.register_craft({
     output = "morelights_modern:pathlight_l",
     recipe = {
-        {"dye:white", "morelights:bulb", ""},
-        {"", "default:steel_ingot", ""},
-        {"", "default:steel_ingot", ""}
+        {a.dye_light, "morelights:bulb", ""},
+        {"", a.steel, ""},
+        {"", a.steel, ""}
     }
 })

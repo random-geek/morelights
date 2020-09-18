@@ -1,12 +1,7 @@
--- basic_materials compatibility
+-- Register custom brass ingot if a suitable replacement doesn't exist.
+if morelights.craft_items.brass == nil then
+    morelights.craft_items.brass = "morelights_vintage:brass_ingot"
 
-local brass_ingot_name
-
-if minetest.get_modpath("basic_materials") then
-    -- Use basic materials brass ingot
-    brass_ingot_name = "basic_materials:brass_ingot"
-else
-    -- Register and use morelights brass ingot
     minetest.register_craftitem("morelights_vintage:brass_ingot", {
         description = "Brass Ingot",
         inventory_image = "default_steel_ingot.png^[multiply:#FFCE69"
@@ -19,8 +14,6 @@ else
             "default:copper_ingot", "default:tin_ingot"
         }
     })
-
-    brass_ingot_name = "morelights_vintage:brass_ingot"
 end
 
 minetest.register_node("morelights_vintage:chain_b", {
@@ -246,46 +239,48 @@ minetest.register_node("morelights_vintage:chandelier", {
 -- Craft recipes
 --
 
+local a = morelights.craft_items
+
 minetest.register_craft({
     output = "morelights_vintage:chain_b",
     recipe = {
-        {"", brass_ingot_name, ""},
+        {"", a.brass, ""},
         {"", "", ""},
-        {"", brass_ingot_name, ""}
+        {"", a.brass, ""}
     }
 })
 
 minetest.register_craft({
     output = "morelights_vintage:block",
     recipe = {
-        {"", "default:junglewood", ""},
-        {morelights.glass, "morelights:bulb", morelights.glass},
-        {"", "default:junglewood", ""}
+        {"", a.wood_dark, ""},
+        {a.glass_pane, "morelights:bulb", a.glass_pane},
+        {"", a.wood_dark, ""}
     }
 })
 
 minetest.register_craft({
     output = "morelights_vintage:smallblock",
     recipe = {
-        {"", morelights.glass, ""},
-        {"default:junglewood", "morelights:bulb", "default:junglewood"}
+        {"", a.glass_pane, ""},
+        {a.wood_dark, "morelights:bulb", a.wood_dark}
     }
 })
 
 minetest.register_craft({
     output = "morelights_vintage:lantern_f",
     recipe = {
-        {"", "default:steel_ingot", ""},
-        {morelights.glass, "morelights:bulb", morelights.glass},
-        {"default:stick", "default:steel_ingot", "default:stick"}
+        {"", a.steel, ""},
+        {a.glass_pane, "morelights:bulb", a.glass_pane},
+        {"default:stick", a.steel, "default:stick"}
     }
 })
 
 minetest.register_craft({
     output = "morelights_vintage:hangingbulb",
     recipe = {
-        {"", "default:steel_ingot", ""},
-        {"", "default:copper_ingot", ""},
+        {"", a.steel, ""},
+        {"", a.copper, ""},
         {"", "morelights:bulb", ""}
     }
 })
@@ -293,17 +288,17 @@ minetest.register_craft({
 minetest.register_craft({
     output = "morelights_vintage:oillamp",
     recipe = {
-        {"", "default:glass", ""},
-        {"farming:cotton", brass_ingot_name, ""},
-        {"", "default:glass", ""}
+        {"", a.glass, ""},
+        {a.cotton, a.brass, ""},
+        {"", a.glass, ""}
     }
 })
 
 minetest.register_craft({
     output = "morelights_vintage:chandelier",
     recipe = {
-        {"", brass_ingot_name, ""},
-        {"morelights:bulb", brass_ingot_name, "morelights:bulb"},
-        {"default:steel_ingot", brass_ingot_name, "default:steel_ingot"}
+        {"", a.brass, ""},
+        {"morelights:bulb", a.brass, "morelights:bulb"},
+        {a.steel, a.brass, a.steel}
     }
 })
