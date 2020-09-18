@@ -36,6 +36,8 @@ minetest.register_node("morelights_vintage:chain_b", {
         fixed = {-1/16, -8/16, -1/16, 1/16, 8/16, 1/16}
     },
     tiles = {"morelights_vintage_brass_32.png"},
+    inventory_image = "morelights_vintage_chain_b_inv.png",
+    wield_image = "morelights_vintage_chain_b_inv.png",
     paramtype = "light",
     groups = {cracky = 3, oddly_breakable_by_hand = 3, mounted_ceiling = 1},
     sounds = default.node_sound_metal_defaults(),
@@ -181,6 +183,8 @@ minetest.register_node("morelights_vintage:hangingbulb", {
     drawtype = "mesh",
     mesh = "morelights_vintage_hangingbulb.obj",
     tiles = {"morelights_vintage_hangingbulb.png^[lowpart:50:morelights_metal_dark_32.png"},
+    inventory_image = "morelights_vintage_hangingbulb_inv.png",
+    wield_image = "morelights_vintage_hangingbulb_inv.png",
     use_texture_alpha = true,
     collision_box = {
         type = "fixed",

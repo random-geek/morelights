@@ -50,6 +50,8 @@ minetest.register_node("morelights_extras:stairlight", {
     tiles = {"morelights_metal_dark.png"},
     overlay_tiles = {"", "morelights_extras_stairlight.png",
         "", "", "morelights_extras_stairlight.png"},
+    inventory_image = "morelights_extras_stairlight_inv.png",
+    wield_image = "morelights_extras_stairlight_inv.png",
     paramtype = "light",
     paramtype2 = "facedir",
     light_source = 10,
