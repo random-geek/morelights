@@ -1,9 +1,12 @@
+local S = minetest.get_translator("morelights_vintage")
+
+
 -- Register custom brass ingot if a suitable replacement doesn't exist.
 if morelights.craft_items.brass == nil then
     morelights.craft_items.brass = "morelights_vintage:brass_ingot"
 
     minetest.register_craftitem("morelights_vintage:brass_ingot", {
-        description = "Brass Ingot",
+        description = S("Brass Ingot"),
         inventory_image = "default_steel_ingot.png^[multiply:#FFCE69"
     })
 
@@ -11,13 +14,14 @@ if morelights.craft_items.brass == nil then
         output = "morelights_vintage:brass_ingot 2",
         type = "shapeless",
         recipe = {
-            "default:copper_ingot", "default:tin_ingot"
+            morelights.craft_items.copper,
+            morelights.craft_items.tin
         }
     })
 end
 
 minetest.register_node("morelights_vintage:chain_b", {
-    description = "Brass Chain",
+    description = S("Brass Chain"),
     drawtype = "mesh",
     mesh = "morelights_chain.obj",
     collision_box = {
@@ -32,13 +36,16 @@ minetest.register_node("morelights_vintage:chain_b", {
     inventory_image = "morelights_vintage_chain_b_inv.png",
     wield_image = "morelights_vintage_chain_b_inv.png",
     paramtype = "light",
-    groups = {cracky = 3, oddly_breakable_by_hand = 3, mounted_ceiling = 1},
-    sounds = default.node_sound_metal_defaults(),
+    sunlight_propagates = true,
+    groups = {cracky = 3, oddly_breakable_by_hand = 3, handy = 1,
+              mounted_ceiling = 1},
+    _mcl_hardness = 0.2,
+    sounds = morelights.sounds.metal,
 
     on_place = function(itemstack, placer, pointed_thing)
         return morelights.on_place_hanging(itemstack, placer, pointed_thing,
             "morelights_vintage:chain_ceiling_b")
-    end,
+    end
 })
 
 minetest.register_node("morelights_vintage:chain_ceiling_b", {
@@ -47,36 +54,39 @@ minetest.register_node("morelights_vintage:chain_ceiling_b", {
     collision_box = {
         type = "fixed",
         fixed = {
-            {-3/16,  7/16, -3/16, 3/16,  8/16, 3/16},
-            {-1/16, -8/16, -1/16, 1/16, 7/16, 1/16}
+            {-3/16, 7/16, -3/16, 3/16, 1/2, 3/16},
+            {-1/16, -1/2, -1/16, 1/16, 7/16, 1/16}
         }
     },
     selection_box = {
         type = "fixed",
         fixed = {
-            {-3/16,  7/16, -3/16, 3/16,  8/16, 3/16},
-            {-1/16, -8/16, -1/16, 1/16, 7/16, 1/16}
+            {-3/16, 7/16, -3/16, 3/16, 1/2, 3/16},
+            {-1/16, -1/2, -1/16, 1/16, 7/16, 1/16}
         }
     },
     tiles = {"morelights_vintage_brass_32.png"},
     drop = "morelights_vintage:chain_b",
     paramtype = "light",
-    groups = {cracky = 3, oddly_breakable_by_hand = 3,
-            not_in_creative_inventory = 1, mounted_ceiling = 1},
-    sounds = default.node_sound_metal_defaults(),
+    sunlight_propagates = true,
+    groups = {cracky = 3, oddly_breakable_by_hand = 3, handy = 1,
+              mounted_ceiling = 1, mounted_ceiling = 1},
+    _mcl_hardness = 0.2,
+    sounds = morelights.sounds.metal
 })
 
 minetest.register_node("morelights_vintage:block", {
-    description = "Vintage Light Block",
+    description = S("Vintage Light Block"),
     tiles = {"morelights_vintage_block.png"},
     paramtype = "light",
-    light_source = LIGHT_MAX,
-    groups = {cracky = 2, oddly_breakable_by_hand = 3},
-    sounds = default.node_sound_glass_defaults(),
+    light_source = minetest.LIGHT_MAX,
+    groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    _mcl_hardness = 0.3,
+    sounds = morelights.sounds.glass
 })
 
 minetest.register_node("morelights_vintage:smallblock", {
-    description = "Vintage Light Block (small)",
+    description = S("Vintage Light Block (small)"),
     drawtype = "nodebox",
     node_box = {
         type = "fixed",
@@ -89,17 +99,19 @@ minetest.register_node("morelights_vintage:smallblock", {
     },
     paramtype = "light",
     paramtype2 = "facedir",
+    sunlight_propagates = true,
     light_source = 12,
-    groups = {cracky = 2, oddly_breakable_by_hand = 3},
-    sounds = default.node_sound_glass_defaults(),
+    groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    _mcl_hardness = 0.2,
+    sounds = morelights.sounds.glass,
 
     on_place = function(itemstack, placer, pointed_thing)
         return morelights.rotate_and_place(itemstack, placer, pointed_thing)
-    end,
+    end
 })
 
 minetest.register_node("morelights_vintage:lantern_f", {
-    description = "Vintage Lantern (floor, wall, or ceiling)",
+    description = S("Vintage Lantern (floor, wall, or ceiling)"),
     drawtype = "mesh",
     mesh = "morelights_vintage_lantern_f.obj",
     tiles = {
@@ -115,34 +127,39 @@ minetest.register_node("morelights_vintage:lantern_f", {
         fixed = {-3/16, -1/2, -3/16, 3/16, 1/16, 3/16}
     },
     paramtype = "light",
+    sunlight_propagates = true,
     light_source = 12,
-    groups = {cracky = 2, oddly_breakable_by_hand = 3},
-    sounds = default.node_sound_glass_defaults(),
+    groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    _mcl_hardness = 0.2,
+    sounds = morelights.sounds.glass,
 
     on_place = function(itemstack, placer, pointed_thing)
         local wdir = minetest.dir_to_wallmounted(
                 vector.subtract(pointed_thing.under, pointed_thing.above))
-        local fakestack = itemstack
+        local fakeStack = ItemStack(itemstack)
 
         if wdir == 0 then
-            fakestack:set_name("morelights_vintage:lantern_c")
+            fakeStack:set_name("morelights_vintage:lantern_c")
         elseif wdir == 1 then
-            fakestack:set_name("morelights_vintage:lantern_f")
+            fakeStack:set_name("morelights_vintage:lantern_f")
         else
-            fakestack:set_name("morelights_vintage:lantern_w")
+            fakeStack:set_name("morelights_vintage:lantern_w")
         end
 
-        itemstack = minetest.item_place(fakestack, placer, pointed_thing, wdir)
-        itemstack:set_name("morelights_vintage:lantern_f")
+        minetest.item_place(fakeStack, placer, pointed_thing, wdir)
+        itemstack:set_count(fakeStack:get_count())
 
         return itemstack
-    end,
+    end
 })
 
 minetest.register_node("morelights_vintage:lantern_c", {
     drawtype = "mesh",
     mesh = "morelights_vintage_lantern_c.obj",
-    tiles = {"morelights_vintage_lantern.png", "morelights_metal_dark_32.png"},
+    tiles = {
+        "morelights_vintage_lantern.png",
+        "morelights_metal_dark_32.png"
+    },
     collision_box = {
         type = "fixed",
         fixed = {-3/16, -1/16, -3/16, 3/16, 1/2, 3/16}
@@ -152,11 +169,13 @@ minetest.register_node("morelights_vintage:lantern_c", {
         fixed = {-3/16, 0, -3/16, 3/16, 1/2, 3/16}
     },
     paramtype = "light",
+    sunlight_propagates = true,
     light_source = 12,
-    groups = {cracky = 2, oddly_breakable_by_hand = 3,
-        not_in_creative_inventory = 1},
-    sounds = default.node_sound_glass_defaults(),
-    drop = "morelights_vintage:lantern_f",
+    groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1,
+              not_in_creative_inventory = 1},
+    _mcl_hardness = 0.2,
+    sounds = morelights.sounds.glass,
+    drop = "morelights_vintage:lantern_f"
 })
 
 minetest.register_node("morelights_vintage:lantern_w", {
@@ -171,22 +190,22 @@ minetest.register_node("morelights_vintage:lantern_w", {
         fixed = {-3/16, -1/4, -5/16, 3/16, 1/8, 3/16}
     },
     selection_box = {
-        type = "wallmounted",
-        wall_bottom = {-3/16, -1/4, -5/16, 3/16, 1/8, 3/16},
-        wall_side = {-1/4, -5/16, -3/16, 1/8, 3/16, 3/16},
-        wall_top = {-3/16, -1/8, -5/16, 3/16, 1/4, 3/16}
+        type = "fixed",
+        fixed = {-3/16, -1/4, -5/16, 3/16, 1/8, 3/16}
     },
     paramtype = "light",
     paramtype2 = "wallmounted",
+    sunlight_propagates = true,
     light_source = 12,
-    groups = {cracky = 2, oddly_breakable_by_hand = 3,
-        not_in_creative_inventory = 1},
-    sounds = default.node_sound_glass_defaults(),
-    drop = "morelights_vintage:lantern_f",
+    groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1,
+              not_in_creative_inventory = 1},
+    _mcl_hardness = 0.2,
+    sounds = morelights.sounds.glass,
+    drop = "morelights_vintage:lantern_f"
 })
 
 minetest.register_node("morelights_vintage:hangingbulb", {
-    description = "Vintage Hanging Light Bulb",
+    description = S("Vintage Hanging Light Bulb"),
     drawtype = "mesh",
     mesh = "morelights_vintage_hangingbulb.obj",
     tiles = {
@@ -205,13 +224,15 @@ minetest.register_node("morelights_vintage:hangingbulb", {
         fixed = {-1/8, -1/8, -1/8, 1/8, 1/2, 1/8}
     },
     paramtype = "light",
+    sunlight_propagates = true,
     light_source = 10,
-    groups = {cracky = 2, oddly_breakable_by_hand = 3},
-    sounds = default.node_sound_glass_defaults(),
+    groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    _mcl_hardness = 0.15,
+    sounds = morelights.sounds.glass
 })
 
 minetest.register_node("morelights_vintage:oillamp", {
-    description = "Vintage Oil Lamp",
+    description = S("Vintage Oil Lamp"),
     drawtype = "mesh",
     mesh = "morelights_vintage_oillamp.obj",
     tiles = {
@@ -236,13 +257,15 @@ minetest.register_node("morelights_vintage:oillamp", {
         fixed = {-1/8, -1/2, -1/8, 1/8, 1/4, 1/8}
     },
     paramtype = "light",
+    sunlight_propagates = true,
     light_source = 8,
-    groups = {cracky = 2, oddly_breakable_by_hand = 3},
-    sounds = default.node_sound_glass_defaults(),
+    groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    _mcl_hardness = 0.2,
+    sounds = morelights.sounds.glass
 })
 
 minetest.register_node("morelights_vintage:chandelier", {
-    description = "Vintage Chandelier",
+    description = S("Vintage Chandelier"),
     drawtype = "mesh",
     mesh = "morelights_vintage_chandelier.obj",
     tiles = {
@@ -258,9 +281,11 @@ minetest.register_node("morelights_vintage:chandelier", {
         fixed = {-3/8, -1/2, -3/8, 3/8, 1/2, 3/8}
     },
     paramtype = "light",
+    sunlight_propagates = true,
     light_source = 10,
-    groups = {cracky = 2, oddly_breakable_by_hand = 3},
-    sounds = default.node_sound_glass_defaults(),
+    groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    _mcl_hardness = 0.3,
+    sounds = morelights.sounds.glass
 })
 
 --
@@ -300,7 +325,7 @@ minetest.register_craft({
     recipe = {
         {"", a.steel, ""},
         {a.glass_pane, "morelights:bulb", a.glass_pane},
-        {"default:stick", a.steel, "default:stick"}
+        {a.stick, a.steel, a.stick}
     }
 })
 
@@ -317,8 +342,8 @@ minetest.register_craft({
     output = "morelights_vintage:oillamp",
     recipe = {
         {"", a.glass, ""},
-        {a.cotton, a.brass, ""},
-        {"", a.glass, ""}
+        {"", a.cotton, ""},
+        {"", a.brass, ""}
     }
 })
 

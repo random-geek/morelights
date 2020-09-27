@@ -1,0 +1,10 @@
+# textdomain:morelights_vintage
+
+Brass Ingot=
+Brass Chain=
+Vintage Light Block=
+Vintage Light Block (small)=
+Vintage Lantern (floor, wall, or ceiling)=
+Vintage Hanging Light Bulb=
+Vintage Oil Lamp=
+Vintage Chandelier=

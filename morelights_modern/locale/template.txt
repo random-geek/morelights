@@ -1,0 +1,15 @@
+# textdomain:morelights_modern
+
+dark=
+light=
+Modern Light Block=
+Modern Light Block (small)=
+Modern Post Light (@1)=
+Street Lamp Post (@1) - connects to bar lights=
+Ceiling Bar Light (connecting)=
+Ceiling Bar Light (straight)=
+Modern Ceiling Light=
+Modern Can Light (@1)=
+Modern Wall Lamp=
+Modern Table Lamp (@1)=
+Modern Path Light (@1)=

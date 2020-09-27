@@ -1,14 +1,18 @@
+local S = minetest.get_translator("morelights_modern")
+
+
 minetest.register_node("morelights_modern:block", {
-    description = "Modern Light Block",
+    description = S("Modern Light Block"),
     tiles = {"morelights_metal_dark.png^morelights_modern_block.png"},
     paramtype = "light",
-    light_source = LIGHT_MAX,
-    groups = {cracky = 2, oddly_breakable_by_hand = 3},
-    sounds = default.node_sound_glass_defaults(),
+    light_source = minetest.LIGHT_MAX,
+    groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    _mcl_hardness = 0.3,
+    sounds = morelights.sounds.glass
 })
 
 minetest.register_node("morelights_modern:smallblock", {
-    description = "Modern Light Block (small)",
+    description = S("Modern Light Block (small)"),
     drawtype = "nodebox",
     node_box = {
         type = "fixed",
@@ -22,19 +26,21 @@ minetest.register_node("morelights_modern:smallblock", {
     },
     paramtype = "light",
     paramtype2 = "facedir",
+    sunlight_propagates = true,
     light_source = 12,
-    groups = {cracky = 3, oddly_breakable_by_hand = 3},
-    sounds = default.node_sound_glass_defaults(),
+    groups = {cracky = 3, oddly_breakable_by_hand = 3, handy = 1},
+    _mcl_hardness = 0.2,
+    sounds = morelights.sounds.glass,
 
     on_place = function(itemstack, placer, pointed_thing)
         return morelights.rotate_and_place(itemstack, placer, pointed_thing)
-    end,
+    end
 })
 
 morelights.register_variants({
     {
         name = "morelights_modern:post_d",
-        description = "Modern Post Light (dark)",
+        description = S("Modern Post Light (@1)", S("dark")),
         tiles = {
             "morelights_metal_dark.png",
             "morelights_metal_dark.png",
@@ -43,7 +49,7 @@ morelights.register_variants({
     },
     {
         name = "morelights_modern:post_l",
-        description = "Modern Post Light (light)",
+        description = S("Modern Post Light (@1)", S("light")),
         tiles = {
             "morelights_metal_light.png",
             "morelights_metal_light.png",
@@ -55,23 +61,27 @@ morelights.register_variants({
     drawtype = "nodebox",
     node_box = {
         type = "fixed",
-        fixed = {{-1/8, -1/2, -1/8, 1/8, 1/2, 1/8}}
+        fixed = {-1/8, -1/2, -1/8, 1/8, 1/2, 1/8}
     },
     paramtype = "light",
-    light_source = LIGHT_MAX,
-    groups = {cracky = 3, oddly_breakable_by_hand = 3},
-    sounds = default.node_sound_metal_defaults(),
+    sunlight_propagates = true,
+    light_source = minetest.LIGHT_MAX,
+    groups = {cracky = 3, oddly_breakable_by_hand = 3, handy = 1},
+    _mcl_hardness = 0.3,
+    sounds = morelights.sounds.metal
 })
 
 morelights.register_variants({
     {
         name = "morelights_modern:streetpost_d",
-        description = "Street Lamp Post (dark)--connects to bar lights",
+        description = S("Street Lamp Post (@1) - connects to bar lights",
+                S("dark")),
         tiles = {"morelights_metal_dark.png"}
     },
     {
         name = "morelights_modern:streetpost_l",
-        description = "Street Lamp Post (light)--connects to bar lights",
+        description = S("Street Lamp Post (@1) - connects to bar lights",
+                S("light")),
         tiles = {"morelights_metal_light.png"}
     }
 },
@@ -90,12 +100,14 @@ morelights.register_variants({
         "morelights_modern:barlight_s"
     },
     paramtype = "light",
-    groups = {cracky = 2, oddly_breakable_by_hand = 3},
-    sounds = default.node_sound_metal_defaults(),
+    sunlight_propagates = true,
+    groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    _mcl_hardness = 0.3,
+    sounds = morelights.sounds.metal
 })
 
 minetest.register_node("morelights_modern:barlight_c", {
-    description = "Ceiling Bar Light (connecting)",
+    description = S("Ceiling Bar Light (connecting)"),
     drawtype = "nodebox",
     node_box = {
         type = "connected",
@@ -117,13 +129,16 @@ minetest.register_node("morelights_modern:barlight_c", {
         "morelights_metal_dark.png"
     },
     paramtype = "light",
-    light_source = LIGHT_MAX,
-    groups = {cracky = 2, oddly_breakable_by_hand = 3},
-    sounds = default.node_sound_glass_defaults(),
+    sunlight_propagates = true,
+    light_source = minetest.LIGHT_MAX,
+    groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    _mcl_hardness = 0.15,
+    sounds = morelights.sounds.glass
 })
 
+-- TODO: Determine orientation of bar lights from nearby nodes.
 minetest.register_node("morelights_modern:barlight_s", {
-    description = "Ceiling Bar Light (straight)",
+    description = S("Ceiling Bar Light (straight)"),
     drawtype = "nodebox",
     node_box = {
         type = "fixed",
@@ -136,13 +151,15 @@ minetest.register_node("morelights_modern:barlight_s", {
     },
     paramtype = "light",
     paramtype2 = "facedir",
-    light_source = LIGHT_MAX,
-    groups = {cracky = 2, oddly_breakable_by_hand = 3},
-    sounds = default.node_sound_glass_defaults(),
+    sunlight_propagates = true,
+    light_source = minetest.LIGHT_MAX,
+    groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    _mcl_hardness = 0.15,
+    sounds = morelights.sounds.glass
 })
 
 minetest.register_node("morelights_modern:ceilinglight", {
-    description = "Modern Ceiling Light",
+    description = S("Modern Ceiling Light"),
     drawtype = "nodebox",
     node_box = {
         type = "fixed",
@@ -154,25 +171,27 @@ minetest.register_node("morelights_modern:ceilinglight", {
     },
     paramtype = "light",
     paramtype2 = "facedir",
-    light_source = LIGHT_MAX,
-    groups = {cracky = 3, oddly_breakable_by_hand = 3},
-    sounds = default.node_sound_glass_defaults(),
+    sunlight_propagates = true,
+    light_source = minetest.LIGHT_MAX,
+    groups = {cracky = 3, oddly_breakable_by_hand = 3, handy = 1},
+    _mcl_hardness = 0.2,
+    sounds = morelights.sounds.glass,
 
     on_place = function(itemstack, placer, pointed_thing)
         return morelights.rotate_and_place(itemstack, placer, pointed_thing,
             {[0] = 0, 20, 12, 16, 4, 8})
-    end,
+    end
 })
 
 morelights.register_variants({
     {
         name = "morelights_modern:canlight_d",
-        description = "Modern Can Light (dark)",
+        description = S("Modern Can Light (@1)", S("dark")),
         tiles = {"morelights_metal_dark.png^morelights_modern_canlight.png"}
     },
     {
         name = "morelights_modern:canlight_l",
-        description = "Modern Can Light (light)",
+        description = S("Modern Can Light (@1)", S("light")),
         tiles = {"morelights_metal_light.png^morelights_modern_canlight.png"}
     },
 },
@@ -188,13 +207,15 @@ morelights.register_variants({
         fixed = {-1/8, 0, -1/8, 1/8, 1/2, 1/8}
     },
     paramtype = "light",
+    sunlight_propagates = true,
     light_source = 12,
-    groups = {cracky = 2, oddly_breakable_by_hand = 3},
-    sounds = default.node_sound_metal_defaults(),
+    groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    _mcl_hardness = 0.2,
+    sounds = morelights.sounds.metal
 })
 
 minetest.register_node("morelights_modern:walllamp", {
-    description = "Modern Wall Lamp",
+    description = S("Modern Wall Lamp"),
     drawtype = "mesh",
     mesh = "morelights_modern_walllamp.obj",
     collision_box = {
@@ -208,20 +229,22 @@ minetest.register_node("morelights_modern:walllamp", {
     tiles = {"morelights_metal_dark_32.png^morelights_modern_walllamp.png"},
     paramtype = "light",
     paramtype2 = "facedir",
+    sunlight_propagates = true,
     light_source = 12,
-    groups = {cracky = 2, oddly_breakable_by_hand = 3},
-    sounds = default.node_sound_glass_defaults(),
+    groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    _mcl_hardness = 0.2,
+    sounds = morelights.sounds.glass,
 
     on_place = function(itemstack, placer, pointed_thing)
         return morelights.rotate_and_place(itemstack, placer, pointed_thing,
             {[0] = 6, 4, 1, 3, 0, 2})
-    end,
+    end
 })
 
 morelights.register_variants({
     {
         name = "morelights_modern:tablelamp_d",
-        description = "Modern Table Lamp (dark)",
+        description = S("Modern Table Lamp (@1)", S("dark")),
         tiles = {
             "morelights_metal_light_32.png^morelights_modern_tablelamp_o.png",
             "morelights_modern_tablelamp_d.png"
@@ -229,7 +252,7 @@ morelights.register_variants({
     },
     {
         name = "morelights_modern:tablelamp_l",
-        description = "Modern Table Lamp (light)",
+        description = S("Modern Table Lamp (@1)", S("light")),
         tiles = {
             "morelights_metal_dark_32.png^morelights_modern_tablelamp_o.png",
             "morelights_modern_tablelamp_l.png"
@@ -248,22 +271,24 @@ morelights.register_variants({
         fixed = {-1/4, -1/2, -1/4, 1/4, 7/16, 1/4}
     },
     paramtype = "light",
+    sunlight_propagates = true,
     light_source = 10,
-    groups = {choppy = 2, oddly_breakable_by_hand = 3},
-    sounds = default.node_sound_defaults(),
+    groups = {choppy = 2, oddly_breakable_by_hand = 3, handy = 1},
+    _mcl_hardness = 0.2,
+    sounds = morelights.sounds.default
 })
 
 morelights.register_variants({
     {
         name = "morelights_modern:pathlight_d",
-        description = "Modern Path Light (dark)",
+        description = S("Modern Path Light (@1)", S("dark")),
         tiles = {
             "morelights_metal_dark_32.png^morelights_modern_pathlight.png"
         }
     },
     {
         name = "morelights_modern:pathlight_l",
-        description = "Modern Path Light (light)",
+        description = S("Modern Path Light (@1)", S("light")),
         tiles = {
             "morelights_metal_light_32.png^morelights_modern_pathlight.png"
         }
@@ -281,12 +306,14 @@ morelights.register_variants({
     },
     selection_box = {
         type = "fixed",
-        fixed = {{-1/8, -1/2, -1/8, 1/8, 3/8, 1/8}}
+        fixed = {-1/8, -1/2, -1/8, 1/8, 3/8, 1/8}
     },
     paramtype = "light",
+    sunlight_propagates = true,
     light_source = 8,
-    groups = {cracky = 3, oddly_breakable_by_hand = 3},
-    sounds = default.node_sound_metal_defaults(),
+    groups = {cracky = 3, oddly_breakable_by_hand = 3, handy = 1},
+    _mcl_hardness = 0.2,
+    sounds = morelights.sounds.metal
 })
 
 --
@@ -395,7 +422,7 @@ minetest.register_craft({
 minetest.register_craft({
     output = "morelights_modern:walllamp",
     recipe = {
-        {a.dye_light, a.glass_pane, ""},
+        {"", a.glass_pane, ""},
         {a.glass_pane, "morelights:bulb", a.steel},
         {"", a.dye_dark, a.steel}
     }
@@ -404,8 +431,8 @@ minetest.register_craft({
 minetest.register_craft({
     output = "morelights_modern:tablelamp_d",
     recipe = {
-        {a.wool_dark, "morelights:bulb", a.wool_dark},
         {"", a.steel, ""},
+        {a.wool_dark, "morelights:bulb", a.wool_dark},
         {"", a.steel, ""}
     }
 })
@@ -413,8 +440,8 @@ minetest.register_craft({
 minetest.register_craft({
     output = "morelights_modern:tablelamp_l",
     recipe = {
-        {a.wool_light, "morelights:bulb", a.wool_light},
         {"", a.steel, ""},
+        {a.wool_light, "morelights:bulb", a.wool_light},
         {"", a.steel, ""}
     }
 })
