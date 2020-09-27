@@ -1,5 +1,7 @@
 # morelights
 
+[![ContentDB](https://content.minetest.net/packages/random_geek/morelights/shields/downloads/)](https://content.minetest.net/packages/random_geek/morelights/)
+
 Minetest mod adding additional lighting nodes.
 
 ![Screenshot](screenshot.png)
