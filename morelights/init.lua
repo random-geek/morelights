@@ -104,7 +104,7 @@ if morelights.game == "mineclone2" then
     a.crystal_fragment = "mcl_nether:quartz"
     a.dye_dark = "mcl_dye:dark_grey"
     a.dye_light = "mcl_dye:white"
-    a.wool_dark = "mcl_wool:dark_grey"
+    a.wool_dark = "mcl_wool:grey"
     a.wool_light = "mcl_wool:white"
     a.wood_dark = "mcl_core:sprucewood"
     a.stone_block = "mcl_core:stone_smooth"
