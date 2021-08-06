@@ -21,7 +21,12 @@ do
         },
         paramtype = "light",
         light_source = 12,
-        groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+        groups = {
+            cracky = 2,
+            oddly_breakable_by_hand = 3,
+            handy = 1,
+            soil = 1,
+        },
         _mcl_hardness = 0.3,
         sounds = morelights.sounds.glass
     }
