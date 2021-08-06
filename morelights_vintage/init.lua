@@ -97,6 +97,7 @@ minetest.register_node("morelights_vintage:smallblock", {
         "morelights_vintage_block.png",
         "[combine:16x16:0,4=morelights_vintage_block.png"
     },
+    use_texture_alpha = "opaque",
     paramtype = "light",
     paramtype2 = "facedir",
     sunlight_propagates = true,
@@ -118,6 +119,7 @@ minetest.register_node("morelights_vintage:lantern_f", {
         "morelights_vintage_lantern.png",
         "morelights_metal_dark_32.png"
     },
+    use_texture_alpha = "opaque",
     collision_box = {
         type = "fixed",
         fixed = {-3/16, -1/2, -3/16, 3/16, 1/16, 3/16}
@@ -160,6 +162,7 @@ minetest.register_node("morelights_vintage:lantern_c", {
         "morelights_vintage_lantern.png",
         "morelights_metal_dark_32.png"
     },
+    use_texture_alpha = "opaque",
     collision_box = {
         type = "fixed",
         fixed = {-3/16, -1/16, -3/16, 3/16, 1/2, 3/16}
@@ -185,6 +188,7 @@ minetest.register_node("morelights_vintage:lantern_w", {
         "morelights_vintage_lantern.png",
         "morelights_metal_dark_32.png"
     },
+    use_texture_alpha = "clip",
     collision_box = {
         type = "fixed",
         fixed = {-3/16, -1/4, -5/16, 3/16, 1/8, 3/16}
@@ -214,7 +218,7 @@ minetest.register_node("morelights_vintage:hangingbulb", {
     },
     inventory_image = "morelights_vintage_hangingbulb_inv.png",
     wield_image = "morelights_vintage_hangingbulb_inv.png",
-    use_texture_alpha = true,
+    use_texture_alpha = "blend",
     collision_box = {
         type = "fixed",
         fixed = {-1/8, -1/8, -1/8, 1/8, 1/2, 1/8}
@@ -248,6 +252,7 @@ minetest.register_node("morelights_vintage:oillamp", {
         "morelights_vintage_oillamp.png",
         "morelights_vintage_brass_32.png"
     },
+    use_texture_alpha = "clip",
     collision_box = {
         type = "fixed",
         fixed = {-1/8, -1/2, -1/8, 1/8, 1/4, 1/8}
@@ -272,6 +277,7 @@ minetest.register_node("morelights_vintage:chandelier", {
         "morelights_vintage_chandelier.png",
         "morelights_vintage_brass_32.png^[multiply:#DFDFDF"
     },
+    use_texture_alpha = "clip",
     collision_box = {
         type = "fixed",
         fixed = {-3/8, -1/2, -3/8, 3/8, 1/2, 3/8}
