@@ -71,6 +71,25 @@ do
         for k, v in pairs(override) do
             def[k] = v
         end
+    elseif morelights.game == "hades_revisited" then
+        local override = {
+            tiles = {
+                "hades_core_grass_cover_colorable.png^morelights_extras_blocklight.png",
+                {name="default_dirt.png", color="white"},
+            },
+            overlay_tiles = {
+                {name = "morelights_extras_blocklight.png", color = "#FFFFFF"},
+                "",
+                {name="hades_core_grass_side_cover_colorable.png", tileable_vertical=false},
+            },
+            paramtype2 = "color",
+            palette = "hades_core_palette_grass.png",
+            color = "#acef6a",
+        }
+        
+        for k, v in pairs(override) do
+            def[k] = v
+        end
     end
 
     minetest.register_node("morelights_extras:dirt_with_grass", def)
@@ -97,6 +116,8 @@ do
     local tile = "default_sandstone_block.png"
     if morelights.game == "mineclone2" then
         tile = "mcl_core_sandstone_smooth.png"
+    elseif morelights.game == "hades_revisited" then
+        tile = "default_sandstone.png"
     end
 
     minetest.register_node("morelights_extras:sandstone_block", {

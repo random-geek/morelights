@@ -53,9 +53,11 @@ if minetest.get_modpath("mcl_core") then
     morelights.game = "mineclone2"
 elseif minetest.get_modpath("default") then
     morelights.game = "minetest_game"
+elseif minetest.get_modpath("hades_core") then
+    morelights.game = "hades_revisited"
 else
     error("Morelights requires a compatible game " ..
-          "(Minetest Game or MineClone 2).")
+          "(Minetest Game, MineClone 2 or Hades Revisited).")
 end
 
 if morelights.game == "minetest_game" then
@@ -69,6 +71,12 @@ elseif morelights.game == "mineclone2" then
         default = mcl_sounds.node_sound_defaults(),
         glass = mcl_sounds.node_sound_glass_defaults(),
         metal = mcl_sounds.node_sound_metal_defaults()
+    }
+elseif morelights.game == "hades_revisited" then
+    morelights.sounds = {
+        default = hades_sounds.node_sound_defaults(),
+        glass = hades_sounds.node_sound_glass_defaults(),
+        metal = hades_sounds.node_sound_metal_defaults()
     }
 end
 
@@ -115,9 +123,31 @@ if morelights.game == "mineclone2" then
     a.stick = "mcl_core:stick"
 end
 
+if morelights.game == "hades_revisited" then
+    a.glass = "hades_core:glass"
+    a.glass_pane = "hades_xpanes:pane_flat"
+    a.steel = "hades_core:steel_ingot"
+    a.copper = "hades_core:copper_ingot"
+    a.tin = "hades_core:tin_ingot"
+    a.crystal_fragment = "hades_core:mese_crystal_fragment"
+    a.dye_dark = "dye:dark_grey"
+    a.dye_light = "dye:white"
+    a.wool_dark = "wool:grey"
+    a.wool_light = "wool:white"
+    a.wood_dark = "hades_trees:jungle_wood"
+    a.stone_block = "hades_core:stone_block"
+    a.sandstone_block = "hades_core:sandstone"
+    a.dirt = "hades_core:dirt"
+    a.grass = "hades_grass:grass_1"
+    a.cotton = "hades_farming:cotton"
+    a.stick = "hades_core:stick"
+end
+
 -- Use basic_materials brass if available, otherwise register our own.
 if minetest.get_modpath("basic_materials") then
     a.brass = "basic_materials:brass_ingot"
+elseif minetest.get_modpath("basic_materials") then
+    a.brass = "hades_extramaterials:brass_ingot"
 end
 
 local path = minetest.get_modpath("morelights")
