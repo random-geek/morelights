@@ -1,17 +1,21 @@
 # Craft recipes for Morelights items
 
-Copper = copper ingot (Minetest Game) or redstone (MineClone 2)
+Copper = copper ingot (Minetest Game, Hades Revisited) or redstone
+(MineClone 2).
 
 Dye = white or dark grey dye, depending on the desired color of the item.
 For MineClone 2, use bone meal or grey dye.
 
-Dark Wood = jungle wood planks (Minetest Game) or spruce wood (MineClone 2).
+Dark Wood = jungle wood planks (Minetest Game), spruce wood (MineClone 2), or
+tropical wood planks (Hades Revisited).
 
 Glass = regular, non-stained glass block.
 
-Glass Pane = regular, non-stained glass pane.
+Glass Pane = regular, non-stained glass pane. For Hades Revisited, use regular
+glass.
 
-Steel = steel ingot (Minetest Game) or iron ingot (MineClone 2).
+Steel = steel ingot (Minetest Game, Hades Revisited) or iron ingot
+(MineClone 2).
 
 ## Basic items
 
@@ -185,7 +189,7 @@ Use light/dark grey wool.
 
 ### Brass Ingot
 
-Minetest Game: Craft from one steel and one tin ingot.
+Minetest Game, Hades Revisited: Craft from one steel and one tin ingot.
 
 MineClone 2: Craft from one iron ingot and one redstone.
 
@@ -259,13 +263,11 @@ MineClone 2: Craft from one iron ingot and one redstone.
 +--------+
 | Glass  |
 +--------+
-| Cotton |
+| String |
 +--------+
 | Brass  |
 +--------+
 ```
-
-For MineClone 2, use string instead of cotton.
 
 ### Vintage Chandelier
 
@@ -294,7 +296,8 @@ For MineClone 2, use string instead of cotton.
 +---------+-------+---------+
 ```
 
-Crystal = mese fragment (Minetest Game) or nether quartz (MineClone 2).
+Crystal = mese fragment (Minetest Game, Hades Revisited) or nether quartz
+(MineClone 2).
 
 ### Grass Light
 
@@ -342,6 +345,8 @@ For MineClone 2, use polished stone.
 ```
 
 For MineClone 2, use cut sandstone.
+
+For Hades Revisited, use fine sandstone.
 
 ### Stair Light
 

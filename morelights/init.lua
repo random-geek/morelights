@@ -19,8 +19,8 @@ end
 
 function morelights.on_place_hanging(itemstack, placer, pointed_thing,
             ceilingName)
-    local ceiling = minetest.get_node(vector.add(pointed_thing.above,
-        {x=0, y=1, z=0}))
+    local ceiling = minetest.get_node(
+        vector.add(pointed_thing.above, vector.new(0, 1, 0)))
 
     if ceiling.name ~= "air"
             and minetest.get_item_group(ceiling.name, "mounted_ceiling") == 0
@@ -57,7 +57,7 @@ elseif minetest.get_modpath("hades_core") then
     morelights.game = "hades_revisited"
 else
     error("Morelights requires a compatible game " ..
-          "(Minetest Game, MineClone 2 or Hades Revisited).")
+          "(Minetest Game, MineClone 2, or Hades Revisited).")
 end
 
 if morelights.game == "minetest_game" then
@@ -96,7 +96,7 @@ morelights.craft_items = {
     sandstone_block = "default:sandstone_block",
     dirt = "default:dirt",
     grass = "default:grass_1",
-    cotton = "farming:cotton",
+    string = "farming:string",
     stick = "default:stick",
 }
 
@@ -119,13 +119,12 @@ if morelights.game == "mineclone2" then
     a.sandstone_block = "mcl_core:sandstonesmooth"
     a.dirt = "mcl_core:dirt"
     a.grass = "mcl_flowers:tallgrass"
-    a.cotton = "mcl_mobitems:string"
+    a.string = "mcl_mobitems:string"
     a.stick = "mcl_core:stick"
-end
-
-if morelights.game == "hades_revisited" then
+elseif morelights.game == "hades_revisited" then
     a.glass = "hades_core:glass"
-    a.glass_pane = "hades_xpanes:pane_flat"
+    -- HR doesn't have glass panes. :(
+    a.glass_pane = "hades_core:glass"
     a.steel = "hades_core:steel_ingot"
     a.copper = "hades_core:copper_ingot"
     a.tin = "hades_core:tin_ingot"
@@ -139,16 +138,14 @@ if morelights.game == "hades_revisited" then
     a.sandstone_block = "hades_core:sandstone"
     a.dirt = "hades_core:dirt"
     a.grass = "hades_grass:grass_1"
-    a.cotton = "hades_farming:cotton"
+    a.string = "hades_farming:cotton"
     a.stick = "hades_core:stick"
 end
 
 -- Use basic_materials brass if available, otherwise register our own.
 if minetest.get_modpath("basic_materials") then
     a.brass = "basic_materials:brass_ingot"
-elseif minetest.get_modpath("basic_materials") then
-    a.brass = "hades_extramaterials:brass_ingot"
 end
 
 local path = minetest.get_modpath("morelights")
-dofile(path .. DIR_DELIM .. "nodes.lua")
+dofile(path .. "/nodes.lua")

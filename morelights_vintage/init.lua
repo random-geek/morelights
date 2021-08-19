@@ -348,7 +348,7 @@ minetest.register_craft({
     output = "morelights_vintage:oillamp",
     recipe = {
         {"", a.glass, ""},
-        {"", a.cotton, ""},
+        {"", a.string, ""},
         {"", a.brass, ""}
     }
 })

@@ -17,7 +17,7 @@ models.
 Some nodes (ceiling lights, bar lights, poles) can be rotated to serve
 different purposes.
 
-Morelights currently supports both Minetest Game and MineClone 2.
+Morelights currently supports Minetest Game, MineClone 2, and Hades Revisited.
 
 ## Craft Recipes
 

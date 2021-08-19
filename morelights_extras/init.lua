@@ -35,60 +35,63 @@ do
         -- For MineClone 2, use node coloring to match environment.
         -- See the mcl_core:dirt_with_grass definition in
         -- ITEMS/mcl_core/nodes_base.lua.
-        local override = {
-            tiles = {
-                "mcl_core_grass_block_top.png",
-                {name = "default_dirt.png", color = "#FFFFFF"}
-            },
-            overlay_tiles = {
-                {name = "morelights_extras_blocklight.png", color = "#FFFFFF"},
-                "",
-                {
-                    name = "mcl_core_grass_block_side_overlay.png",
-                    tileable_vertical = false
-                }
-            },
-            paramtype2 = "color",
-            palette = "mcl_core_palette_grass.png",
-            palette_index = 0,
-            color = "#55aa60",
-            drop = "morelights_extras:dirt_with_grass",
+        def.tiles = {
+            "mcl_core_grass_block_top.png",
+            {name = "default_dirt.png", color = "#FFFFFF"}
+        }
+        def.overlay_tiles = {
+            {name = "morelights_extras_blocklight.png", color = "#FFFFFF"},
+            "",
+            {
+                name = "mcl_core_grass_block_side_overlay.png",
+                tileable_vertical = false
+            }
+        }
+        def.paramtype2 = "color"
+        def.palette = "mcl_core_palette_grass.png"
+        def.palette_index = 0
+        def.color = "#55aa60"
+        def.drop = "morelights_extras:dirt_with_grass"
 
-            on_construct = function(pos)
-                local node = minetest.get_node(pos)
-                if node.param2 == 0 then
-                    local grass_node = mcl_core.get_grass_block_type(pos)
-                    if grass_node.param2 ~= 0 then
-                        minetest.set_node(pos, {
-                            name = "morelights_extras:dirt_with_grass",
-                            param2 = grass_node.param2
-                        })
-                    end
+        def.on_construct = function(pos)
+            local node = minetest.get_node(pos)
+            if node.param2 == 0 then
+                local grass_node = mcl_core.get_grass_block_type(pos)
+                if grass_node.param2 ~= 0 then
+                    minetest.set_node(pos, {
+                        name = "morelights_extras:dirt_with_grass",
+                        param2 = grass_node.param2
+                    })
                 end
             end
-        }
-
-        for k, v in pairs(override) do
-            def[k] = v
         end
     elseif morelights.game == "hades_revisited" then
-        local override = {
-            tiles = {
-                "hades_core_grass_cover_colorable.png^morelights_extras_blocklight.png",
-                {name="default_dirt.png", color="white"},
-            },
-            overlay_tiles = {
-                {name = "morelights_extras_blocklight.png", color = "#FFFFFF"},
-                "",
-                {name="hades_core_grass_side_cover_colorable.png", tileable_vertical=false},
-            },
-            paramtype2 = "color",
-            palette = "hades_core_palette_grass.png",
-            color = "#acef6a",
+        -- For Hades Revisited, grass color is seasonal.
+        -- See hades_core/dirt.lua, ABM in hades_core/functions.lua.
+        def.tiles = {
+            "hades_core_grass_cover_colorable.png",
+            {name = "default_dirt.png", color = "#FFFFFF"},
         }
-        
-        for k, v in pairs(override) do
-            def[k] = v
+        def.overlay_tiles = {
+            {name = "morelights_extras_blocklight.png", color = "#FFFFFF"},
+            "",
+            {
+                name = "hades_core_grass_side_cover_colorable.png",
+                tileable_vertical = false
+            },
+        }
+        def.paramtype2 = "color"
+        def.palette = "hades_core_palette_grass.png"
+        def.palette_index = 0
+        def.color = "#acef6a"
+        -- To enable seasonal grass coloring.
+        def.groups.dirt_with_grass = 1
+        -- To prevent color retention on digging.
+        def.drop = "morelights_extras:dirt_with_grass"
+
+        def.on_place = function(itemstack, placer, pointed_thing)
+            local param2 = hades_core.get_seasonal_grass_color_param2()
+            return minetest.item_place(itemstack, placer, pointed_thing, param2)
         end
     end
 
@@ -179,8 +182,8 @@ minetest.register_node("morelights_extras:stairlight", {
                   or node.name:match("^mcl_stairs:stair_")) then
             -- Set `above` to the node actually above the stair, since that's
             -- where the node is placed.
-            pointed_thing.above = vector.add(pointed_thing.under,
-                    {x=0, y=1, z=0})
+            pointed_thing.above =
+                    vector.add(pointed_thing.under, vector.new(0, 1, 0))
             return minetest.item_place_node(itemstack, placer, pointed_thing,
                     node.param2)
         end
