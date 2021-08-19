@@ -125,6 +125,10 @@ elseif morelights.game == "hades_revisited" then
     a.glass = "hades_core:glass"
     -- HR doesn't have glass panes. :(
     a.glass_pane = "hades_core:glass"
+    if minetest.get_modpath("hades_xpanes") then
+        a.glass_pane = "hades_xpanes:pane_flat"
+    end
+
     a.steel = "hades_core:steel_ingot"
     a.copper = "hades_core:copper_ingot"
     a.tin = "hades_core:tin_ingot"

@@ -11,8 +11,9 @@ tropical wood planks (Hades Revisited).
 
 Glass = regular, non-stained glass block.
 
-Glass Pane = regular, non-stained glass pane. For Hades Revisited, use regular
-glass.
+Glass Pane = regular, non-stained glass pane. For Hades Revisited, if
+`hades_extensionmods`/`hades_xpanes` is not available, use regular glass
+instead.
 
 Steel = steel ingot (Minetest Game, Hades Revisited) or iron ingot
 (MineClone 2).
@@ -192,6 +193,8 @@ Use light/dark grey wool.
 Minetest Game, Hades Revisited: Craft from one steel and one tin ingot.
 
 MineClone 2: Craft from one iron ingot and one redstone.
+
+If `basic_materials` is installed, its Brass Ingot will be used instead.
 
 ### Brass Chain
 
