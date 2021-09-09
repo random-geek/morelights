@@ -2,18 +2,34 @@ morelights = {}
 
 -- TODO: Change node definition based on game if groups get too unwieldy.
 
+--! Registers a node definition with different variations.
+--!
+--! @p fixedDef is the common part of the node definition.
+--! @p variants is an array of incomplete node definitions,
+--! which will be inserted to @p fixedDef each.
+--!
+--! Elements of @p variants additionally contain either a @c name field,
+--! which becomes the node name, or a @c subvariants field,
+--! which is an array the same way as @p variants itself.
 function morelights.register_variants(variants, fixedDef)
     for _, variant in ipairs(variants) do
         local name = variant.name
+        local subvariants = variant.subvariants
         local def = table.copy(fixedDef)
 
         for k, v in pairs(variant) do
-            if k ~= "name" then
+            if k ~= "name" and k ~= "subvariants" then
                 def[k] = v
             end
         end
 
-        minetest.register_node(name, def)
+        if subvariants then
+            for _, subvariant in ipairs(subvariants) do
+                morelights.register_variants(subvariant, def)
+            end
+        else
+            minetest.register_node(name, def)
+        end
     end
 end
 
