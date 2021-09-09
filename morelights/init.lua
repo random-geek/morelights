@@ -33,6 +33,18 @@ function morelights.register_variants(variants, fixedDef)
     end
 end
 
+--! Makes `base_name .. "_dim"` craftable from `base_name`.
+function morelights.register_dim_recipe(base_name)
+    minetest.register_craft({
+        output = base_name .. "_dim",
+        recipe = {{base_name, base_name}}
+    })
+    minetest.register_craft({
+        output = base_name,
+        recipe = {{base_name .. "_dim"}, {base_name .. "_dim"}}
+    })
+end
+
 function morelights.on_place_hanging(itemstack, placer, pointed_thing,
             ceilingName)
     local ceiling = minetest.get_node(
