@@ -1,33 +1,60 @@
 local S = minetest.get_translator("morelights_modern")
 
 
-minetest.register_node("morelights_modern:block", {
-    description = S("Modern Light Block"),
-    tiles = {"morelights_metal_dark.png^morelights_modern_block.png"},
+morelights.register_variants({
+    {
+        name = "morelights_modern:block",
+        description = S("Modern Light Block"),
+        light_source = minetest.LIGHT_MAX,
+        tiles = {"morelights_metal_dark.png^morelights_modern_block.png"},
+    },
+    {
+        name = "morelights_modern:block_dim",
+        description = S("Dim Modern Light Block"),
+        light_source = minetest.LIGHT_MAX - 5,
+        tiles = {"morelights_metal_dark.png^(morelights_modern_block.png^[multiply:#dddddd)"},
+    }
+},
+{
     paramtype = "light",
-    light_source = minetest.LIGHT_MAX,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
     _mcl_hardness = 0.3,
     sounds = morelights.sounds.glass
 })
 
-minetest.register_node("morelights_modern:smallblock", {
-    description = S("Modern Light Block (small)"),
+morelights.register_variants({
+    {
+        name = "morelights_modern:smallblock",
+        description = S("Modern Light Block (small)"),
+        light_source = 12,
+        tiles = {
+            "morelights_metal_dark.png^morelights_modern_smallblock.png",
+            "morelights_metal_dark.png^morelights_modern_smallblock.png",
+            "[combine:16x16:0,0=morelights_metal_dark.png" ..
+                    ":0,4=morelights_modern_smallblock.png"
+        }
+    },
+    {
+        name = "morelights_modern:smallblock_dim",
+        description = S("Dim Modern Light Block (small)"),
+        light_source = 8,
+        tiles = {
+            "morelights_metal_dark.png^(morelights_modern_smallblock.png^[multiply:#dddddd)",
+            "morelights_metal_dark.png^(morelights_modern_smallblock.png^[multiply:#dddddd)",
+            "[combine:16x16:0,0=morelights_metal_dark.png" ..
+                    ":0,4=morelights_modern_smallblock.png\\^[multiply\\:#dddddd"
+        }
+    }
+},
+{
     drawtype = "nodebox",
     node_box = {
         type = "fixed",
         fixed = {-1/4, -1/2, -1/4, 1/4, 0, 1/4}
     },
-    tiles = {
-        "morelights_metal_dark.png^morelights_modern_smallblock.png",
-        "morelights_metal_dark.png^morelights_modern_smallblock.png",
-        "[combine:16x16:0,0=morelights_metal_dark.png" ..
-                ":0,4=morelights_modern_smallblock.png"
-    },
     paramtype = "light",
     paramtype2 = "facedir",
     sunlight_propagates = true,
-    light_source = 12,
     groups = {cracky = 3, oddly_breakable_by_hand = 3, handy = 1},
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.glass,
@@ -41,6 +68,7 @@ morelights.register_variants({
     {
         name = "morelights_modern:post_d",
         description = S("Modern Post Light (@1)", S("dark")),
+        light_source = minetest.LIGHT_MAX,
         tiles = {
             "morelights_metal_dark.png",
             "morelights_metal_dark.png",
@@ -48,12 +76,33 @@ morelights.register_variants({
         }
     },
     {
+        name = "morelights_modern:post_d_dim",
+        description = S("Dim Modern Post Light (@1)", S("dark")),
+        light_source = minetest.LIGHT_MAX - 5,
+        tiles = {
+            "morelights_metal_dark.png",
+            "morelights_metal_dark.png",
+            "morelights_metal_dark.png^(morelights_modern_post.png^[multiply:#dddddd)"
+        }
+    },
+    {
         name = "morelights_modern:post_l",
         description = S("Modern Post Light (@1)", S("light")),
+        light_source = minetest.LIGHT_MAX,
         tiles = {
             "morelights_metal_light.png",
             "morelights_metal_light.png",
             "morelights_metal_light.png^morelights_modern_post.png"
+        }
+    },
+    {
+        name = "morelights_modern:post_l_dim",
+        description = S("Dim Modern Post Light (@1)", S("light")),
+        light_source = minetest.LIGHT_MAX - 5,
+        tiles = {
+            "morelights_metal_light.png",
+            "morelights_metal_light.png",
+            "morelights_metal_light.png^(morelights_modern_post.png^[multiply:#dddddd)"
         }
     }
 },
@@ -65,7 +114,6 @@ morelights.register_variants({
     },
     paramtype = "light",
     sunlight_propagates = true,
-    light_source = minetest.LIGHT_MAX,
     groups = {cracky = 3, oddly_breakable_by_hand = 3, handy = 1},
     _mcl_hardness = 0.3,
     sounds = morelights.sounds.metal
@@ -97,7 +145,9 @@ morelights.register_variants({
     },
     connects_to = {
         "morelights_modern:barlight_c",
-        "morelights_modern:barlight_s"
+        "morelights_modern:barlight_s",
+        "morelights_modern:barlight_c_dim",
+        "morelights_modern:barlight_s_dim"
     },
     paramtype = "light",
     sunlight_propagates = true,
@@ -106,8 +156,30 @@ morelights.register_variants({
     sounds = morelights.sounds.metal
 })
 
-minetest.register_node("morelights_modern:barlight_c", {
-    description = S("Ceiling Bar Light (connecting)"),
+morelights.register_variants(
+{
+    {
+        name = "morelights_modern:barlight_c",
+        description = S("Ceiling Bar Light (connecting)"),
+        light_source = minetest.LIGHT_MAX,
+        tiles = {
+            "morelights_metal_dark.png",
+            "morelights_modern_barlight.png",
+            "morelights_metal_dark.png"
+        }
+    },
+    {
+        name = "morelights_modern:barlight_c_dim",
+        description = S("Dim Ceiling Bar Light (connecting)"),
+        light_source = minetest.LIGHT_MAX - 5,
+        tiles = {
+            "morelights_metal_dark.png",
+            "morelights_modern_barlight.png^[multiply:#dddddd",
+            "morelights_metal_dark.png"
+        }
+    }
+},
+{
     drawtype = "nodebox",
     node_box = {
         type = "connected",
@@ -120,59 +192,84 @@ minetest.register_node("morelights_modern:barlight_c", {
     connects_to = {
         "morelights_modern:barlight_c",
         "morelights_modern:barlight_s",
+        "morelights_modern:barlight_c_dim",
+        "morelights_modern:barlight_s_dim",
         "morelights_modern:streetpost_d",
         "morelights_modern:streetpost_l"
     },
-    tiles = {
-        "morelights_metal_dark.png",
-        "morelights_modern_barlight.png",
-        "morelights_metal_dark.png"
-    },
     paramtype = "light",
     sunlight_propagates = true,
-    light_source = minetest.LIGHT_MAX,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
     _mcl_hardness = 0.15,
     sounds = morelights.sounds.glass
 })
 
 -- TODO: Determine orientation of bar lights from nearby nodes.
-minetest.register_node("morelights_modern:barlight_s", {
-    description = S("Ceiling Bar Light (straight)"),
+morelights.register_variants({
+    {
+        name = "morelights_modern:barlight_s",
+        description = S("Ceiling Bar Light (straight)"),
+        light_source = minetest.LIGHT_MAX,
+        tiles = {
+            "morelights_metal_dark.png",
+            "morelights_modern_barlight.png",
+            "morelights_metal_dark.png"
+        }
+    },
+    {
+        name = "morelights_modern:barlight_s_dim",
+        description = S("Dim Ceiling Bar Light (straight)"),
+        light_source = minetest.LIGHT_MAX - 5,
+        tiles = {
+            "morelights_metal_dark.png",
+            "morelights_modern_barlight.png^[multiply:#dddddd",
+            "morelights_metal_dark.png"
+        }
+    }
+},
+{
     drawtype = "nodebox",
     node_box = {
         type = "fixed",
         fixed = {-1/2, 3/8, -1/8, 1/2, 1/2, 1/8},
     },
-    tiles = {
-        "morelights_metal_dark.png",
-        "morelights_modern_barlight.png",
-        "morelights_metal_dark.png"
-    },
     paramtype = "light",
     paramtype2 = "facedir",
     sunlight_propagates = true,
-    light_source = minetest.LIGHT_MAX,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
     _mcl_hardness = 0.15,
     sounds = morelights.sounds.glass
 })
 
-minetest.register_node("morelights_modern:ceilinglight", {
-    description = S("Modern Ceiling Light"),
+morelights.register_variants({
+    {
+        name = "morelights_modern:ceilinglight",
+        description = S("Modern Ceiling Light"),
+        light_source = minetest.LIGHT_MAX,
+        tiles = {
+            "morelights_metal_dark.png",
+            "morelights_metal_dark.png^morelights_modern_block.png"
+        }
+    },
+    {
+        name = "morelights_modern:ceilinglight_dim",
+        description = S("Dim Modern Ceiling Light"),
+        light_source = minetest.LIGHT_MAX - 5,
+        tiles = {
+            "morelights_metal_dark.png",
+            "morelights_metal_dark.png^(morelights_modern_block.png^[multiply:#dddddd)"
+        }
+    }
+},
+{
     drawtype = "nodebox",
     node_box = {
         type = "fixed",
         fixed = {-1/4, 3/8, -1/4, 1/4, 1/2, 1/4}
     },
-    tiles = {
-        "morelights_metal_dark.png",
-        "morelights_metal_dark.png^morelights_modern_block.png"
-    },
     paramtype = "light",
     paramtype2 = "facedir",
     sunlight_propagates = true,
-    light_source = minetest.LIGHT_MAX,
     groups = {cracky = 3, oddly_breakable_by_hand = 3, handy = 1},
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.glass,
@@ -187,13 +284,27 @@ morelights.register_variants({
     {
         name = "morelights_modern:canlight_d",
         description = S("Modern Can Light (@1)", S("dark")),
+        light_source = 12,
         tiles = {"morelights_metal_dark.png^morelights_modern_canlight.png"}
+    },
+    {
+        name = "morelights_modern:canlight_d_dim",
+        description = S("Dim Modern Can Light (@1)", S("dark")),
+        light_source = 8,
+        tiles = {"morelights_metal_dark.png^(morelights_modern_canlight.png^[multiply:#dddddd)"}
     },
     {
         name = "morelights_modern:canlight_l",
         description = S("Modern Can Light (@1)", S("light")),
+        light_source = 12,
         tiles = {"morelights_metal_light.png^morelights_modern_canlight.png"}
     },
+    {
+        name = "morelights_modern:canlight_l_dim",
+        description = S("Dim Modern Can Light (@1)", S("light")),
+        light_source = 8,
+        tiles = {"morelights_metal_light.png^(morelights_modern_canlight.png^[multiply:#dddddd)"}
+    }
 },
 {
     drawtype = "mesh",
@@ -208,14 +319,26 @@ morelights.register_variants({
     },
     paramtype = "light",
     sunlight_propagates = true,
-    light_source = 12,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.metal
 })
 
-minetest.register_node("morelights_modern:walllamp", {
-    description = S("Modern Wall Lamp"),
+morelights.register_variants({
+    {
+        name = "morelights_modern:walllamp",
+        description = S("Modern Wall Lamp"),
+        light_source = 12,
+        tiles = {"morelights_metal_dark_32.png^morelights_modern_walllamp.png"},
+    },
+    {
+        name = "morelights_modern:walllamp_dim",
+        description = S("Dim Modern Wall Lamp"),
+        light_source = 8,
+        tiles = {"morelights_metal_dark_32.png^(morelights_modern_walllamp.png^[multiply:#dddddd)"},
+    }
+},
+{
     drawtype = "mesh",
     mesh = "morelights_modern_walllamp.obj",
     collision_box = {
@@ -226,11 +349,9 @@ minetest.register_node("morelights_modern:walllamp", {
         type = "fixed",
         fixed = {-1/8, -3/8, 1/8, 1/8, 1/4, 1/2}
     },
-    tiles = {"morelights_metal_dark_32.png^morelights_modern_walllamp.png"},
     paramtype = "light",
     paramtype2 = "facedir",
     sunlight_propagates = true,
-    light_source = 12,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.glass,
@@ -245,19 +366,39 @@ morelights.register_variants({
     {
         name = "morelights_modern:tablelamp_d",
         description = S("Modern Table Lamp (@1)", S("dark")),
+        light_source = 10,
         tiles = {
             "morelights_metal_light_32.png^morelights_modern_tablelamp_o.png",
             "morelights_modern_tablelamp_d.png"
         }
     },
     {
+        name = "morelights_modern:tablelamp_d_dim",
+        description = S("Dim Modern Table Lamp (@1)", S("dark")),
+        light_source = 7,
+        tiles = {
+            "morelights_metal_light_32.png^(morelights_modern_tablelamp_o.png^[multiply:#dddddd)",
+            "morelights_modern_tablelamp_d.png^[multiply:#dddddd"
+        }
+    },
+    {
         name = "morelights_modern:tablelamp_l",
         description = S("Modern Table Lamp (@1)", S("light")),
+        light_source = 10,
         tiles = {
             "morelights_metal_dark_32.png^morelights_modern_tablelamp_o.png",
             "morelights_modern_tablelamp_l.png"
         }
     },
+    {
+        name = "morelights_modern:tablelamp_l_dim",
+        description = S("Dim Modern Table Lamp (@1)", S("light")),
+        light_source = 7,
+        tiles = {
+            "morelights_metal_dark_32.png^(morelights_modern_tablelamp_o.png^[multiply:#dddddd)",
+            "morelights_modern_tablelamp_l.png^[multiply:#dddddd"
+        }
+    }
 },
 {
     drawtype = "mesh",
@@ -272,7 +413,6 @@ morelights.register_variants({
     },
     paramtype = "light",
     sunlight_propagates = true,
-    light_source = 10,
     groups = {choppy = 2, oddly_breakable_by_hand = 3, handy = 1},
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.default
@@ -282,15 +422,33 @@ morelights.register_variants({
     {
         name = "morelights_modern:pathlight_d",
         description = S("Modern Path Light (@1)", S("dark")),
+        light_source = 8,
         tiles = {
             "morelights_metal_dark_32.png^morelights_modern_pathlight.png"
         }
     },
     {
+        name = "morelights_modern:pathlight_d_dim",
+        description = S("Dim Modern Path Light (@1)", S("dark")),
+        light_source = 5,
+        tiles = {
+            "morelights_metal_dark_32.png^(morelights_modern_pathlight.png^[multiply:#dddddd)"
+        }
+    },
+    {
         name = "morelights_modern:pathlight_l",
         description = S("Modern Path Light (@1)", S("light")),
+        light_source = 8,
         tiles = {
             "morelights_metal_light_32.png^morelights_modern_pathlight.png"
+        }
+    },
+    {
+        name = "morelights_modern:pathlight_l_dim",
+        description = S("Dim Modern Path Light (@1)", S("light")),
+        light_source = 5,
+        tiles = {
+            "morelights_metal_light_32.png^(morelights_modern_pathlight.png^[multiply:#dddddd)"
         }
     }
 },
@@ -310,7 +468,6 @@ morelights.register_variants({
     },
     paramtype = "light",
     sunlight_propagates = true,
-    light_source = 8,
     groups = {cracky = 3, oddly_breakable_by_hand = 3, handy = 1},
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.metal
@@ -322,6 +479,7 @@ morelights.register_variants({
 
 local a = morelights.craft_items
 
+morelights.register_dim_recipe("morelights_modern:block");
 minetest.register_craft({
     output = "morelights_modern:block",
     recipe = {
@@ -331,6 +489,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_modern:smallblock");
 minetest.register_craft({
     output = "morelights_modern:smallblock",
     recipe = {
@@ -339,6 +498,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_modern:post_d");
 minetest.register_craft({
     output = "morelights_modern:post_d",
     recipe = {
@@ -348,6 +508,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_modern:post_l");
 minetest.register_craft({
     output = "morelights_modern:post_l",
     recipe = {
@@ -357,6 +518,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_modern:streetpost_d");
 minetest.register_craft({
     output = "morelights_modern:streetpost_d 2",
     recipe = {
@@ -366,6 +528,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_modern:streetpost_l");
 minetest.register_craft({
     output = "morelights_modern:streetpost_l 2",
     recipe = {
@@ -375,6 +538,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_modern:barlight_c");
 minetest.register_craft({
     output = "morelights_modern:barlight_c 4",
     recipe = {
@@ -395,6 +559,19 @@ minetest.register_craft({
     recipe = {"morelights_modern:barlight_c"}
 })
 
+morelights.register_dim_recipe("morelights_modern:barlight_s");
+minetest.register_craft({
+    output = "morelights_modern:barlight_c_dim",
+    type = "shapeless",
+    recipe = {"morelights_modern:barlight_s_dim"}
+})
+minetest.register_craft({
+    output = "morelights_modern:barlight_s_dim",
+    type = "shapeless",
+    recipe = {"morelights_modern:barlight_c_dim"}
+})
+
+morelights.register_dim_recipe("morelights_modern:ceilinglight");
 minetest.register_craft({
     output = "morelights_modern:ceilinglight",
     recipe = {
@@ -403,6 +580,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_modern:canlight_d")
 minetest.register_craft({
     output = "morelights_modern:canlight_d",
     recipe = {
@@ -411,6 +589,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_modern:canlight_l")
 minetest.register_craft({
     output = "morelights_modern:canlight_l",
     recipe = {
@@ -419,6 +598,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_modern:walllamp")
 minetest.register_craft({
     output = "morelights_modern:walllamp",
     recipe = {
@@ -428,6 +608,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_modern:tablelamp_d")
 minetest.register_craft({
     output = "morelights_modern:tablelamp_d",
     recipe = {
@@ -437,6 +618,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_modern:tablelamp_l")
 minetest.register_craft({
     output = "morelights_modern:tablelamp_l",
     recipe = {
@@ -446,6 +628,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_modern:pathlight_d")
 minetest.register_craft({
     output = "morelights_modern:pathlight_d",
     recipe = {
@@ -455,6 +638,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_modern:pathlight_l")
 minetest.register_craft({
     output = "morelights_modern:pathlight_l",
     recipe = {
