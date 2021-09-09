@@ -75,33 +75,59 @@ minetest.register_node("morelights_vintage:chain_ceiling_b", {
     sounds = morelights.sounds.metal
 })
 
-minetest.register_node("morelights_vintage:block", {
-    description = S("Vintage Light Block"),
-    tiles = {"morelights_vintage_block.png"},
+morelights.register_variants({
+    {
+        name = "morelights_vintage:block",
+        description = S("Vintage Light Block"),
+        light_source = minetest.LIGHT_MAX,
+        tiles = {"morelights_vintage_block.png"}
+    },
+    {
+        name = "morelights_vintage:block_dim",
+        description = S("Dim Vintage Light Block"),
+        light_source = minetest.LIGHT_MAX - 5,
+        tiles = {"morelights_vintage_block.png^[multiply:#dddddd"}
+    }
+},
+{
     paramtype = "light",
-    light_source = minetest.LIGHT_MAX,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
     _mcl_hardness = 0.3,
     sounds = morelights.sounds.glass
 })
 
-minetest.register_node("morelights_vintage:smallblock", {
-    description = S("Vintage Light Block (small)"),
+morelights.register_variants({
+    {
+        name = "morelights_vintage:smallblock",
+        description = S("Vintage Light Block (small)"),
+        light_source = 12,
+        tiles = {
+            "morelights_vintage_block.png",
+            "morelights_vintage_block.png",
+            "[combine:16x16:0,4=morelights_vintage_block.png"
+        }
+    },
+    {
+        name = "morelights_vintage:smallblock_dim",
+        description = S("Dim Vintage Light Block (small)"),
+        light_source = 8,
+        tiles = {
+            "morelights_vintage_block.png^[multiply:#dddddd",
+            "morelights_vintage_block.png^[multiply:#dddddd",
+            "[combine:16x16:0,4=morelights_vintage_block.png\\^[multiply\\:#dddddd"
+        }
+    }
+},
+{
     drawtype = "nodebox",
     node_box = {
         type = "fixed",
         fixed = {-1/4, -1/2, -1/4, 1/4, 0, 1/4}
     },
-    tiles = {
-        "morelights_vintage_block.png",
-        "morelights_vintage_block.png",
-        "[combine:16x16:0,4=morelights_vintage_block.png"
-    },
     use_texture_alpha = "opaque",
     paramtype = "light",
     paramtype2 = "facedir",
     sunlight_propagates = true,
-    light_source = 12,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.glass,
@@ -111,14 +137,29 @@ minetest.register_node("morelights_vintage:smallblock", {
     end
 })
 
-minetest.register_node("morelights_vintage:lantern_f", {
-    description = S("Vintage Lantern (floor, wall, or ceiling)"),
+morelights.register_variants({
+    {
+        name = "morelights_vintage:lantern_f",
+        description = S("Vintage Lantern (floor, wall, or ceiling)"),
+        light_source = 12,
+        tiles = {
+            "morelights_vintage_lantern.png",
+            "morelights_metal_dark_32.png"
+        }
+    },
+    {
+        name = "morelights_vintage:lantern_f_dim",
+        description = S("Dim Vintage Lantern (floor, wall, or ceiling)"),
+        light_source = 8,
+        tiles = {
+            "morelights_vintage_lantern.png^[multiply:#dddddd",
+            "morelights_metal_dark_32.png"
+        }
+    }
+},
+{
     drawtype = "mesh",
     mesh = "morelights_vintage_lantern_f.obj",
-    tiles = {
-        "morelights_vintage_lantern.png",
-        "morelights_metal_dark_32.png"
-    },
     use_texture_alpha = "opaque",
     collision_box = {
         type = "fixed",
@@ -130,7 +171,6 @@ minetest.register_node("morelights_vintage:lantern_f", {
     },
     paramtype = "light",
     sunlight_propagates = true,
-    light_source = 12,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.glass,
@@ -139,13 +179,14 @@ minetest.register_node("morelights_vintage:lantern_f", {
         local wdir = minetest.dir_to_wallmounted(
                 vector.subtract(pointed_thing.under, pointed_thing.above))
         local fakeStack = ItemStack(itemstack)
+        local suffix = (string.sub(fakeStack:get_name(), -4) == "_dim") and "_dim" or ""
 
         if wdir == 0 then
-            fakeStack:set_name("morelights_vintage:lantern_c")
+            fakeStack:set_name("morelights_vintage:lantern_c" .. suffix)
         elseif wdir == 1 then
-            fakeStack:set_name("morelights_vintage:lantern_f")
+            fakeStack:set_name("morelights_vintage:lantern_f" .. suffix)
         else
-            fakeStack:set_name("morelights_vintage:lantern_w")
+            fakeStack:set_name("morelights_vintage:lantern_w" .. suffix)
         end
 
         minetest.item_place(fakeStack, placer, pointed_thing, wdir)
@@ -155,13 +196,29 @@ minetest.register_node("morelights_vintage:lantern_f", {
     end
 })
 
-minetest.register_node("morelights_vintage:lantern_c", {
+morelights.register_variants({
+    {
+        name = "morelights_vintage:lantern_c",
+        light_source = 12,
+        tiles = {
+            "morelights_vintage_lantern.png",
+            "morelights_metal_dark_32.png"
+        },
+        drop = "morelights_vintage:lantern_f"
+    },
+    {
+        name = "morelights_vintage:lantern_c_dim",
+        light_source = 8,
+        tiles = {
+            "morelights_vintage_lantern.png^[multiply:#dddddd",
+            "morelights_metal_dark_32.png"
+        },
+        drop = "morelights_vintage:lantern_f_dim"
+    }
+},
+{
     drawtype = "mesh",
     mesh = "morelights_vintage_lantern_c.obj",
-    tiles = {
-        "morelights_vintage_lantern.png",
-        "morelights_metal_dark_32.png"
-    },
     use_texture_alpha = "opaque",
     collision_box = {
         type = "fixed",
@@ -173,21 +230,35 @@ minetest.register_node("morelights_vintage:lantern_c", {
     },
     paramtype = "light",
     sunlight_propagates = true,
-    light_source = 12,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1,
               not_in_creative_inventory = 1},
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.glass,
-    drop = "morelights_vintage:lantern_f"
 })
 
-minetest.register_node("morelights_vintage:lantern_w", {
+morelights.register_variants({
+    {
+        name = "morelights_vintage:lantern_w",
+        light_source = 12,
+        tiles = {
+            "morelights_vintage_lantern.png",
+            "morelights_metal_dark_32.png"
+        },
+        drop = "morelights_vintage:lantern_f"
+    },
+    {
+        name = "morelights_vintage:lantern_w_dim",
+        light_source = 8,
+        tiles = {
+            "morelights_vintage_lantern.png^[multiply:#dddddd",
+            "morelights_metal_dark_32.png"
+        },
+        drop = "morelights_vintage:lantern_f_dim"
+    }
+},
+{
     drawtype = "mesh",
     mesh = "morelights_vintage_lantern_w.obj",
-    tiles = {
-        "morelights_vintage_lantern.png",
-        "morelights_metal_dark_32.png"
-    },
     use_texture_alpha = "clip",
     collision_box = {
         type = "fixed",
@@ -200,22 +271,35 @@ minetest.register_node("morelights_vintage:lantern_w", {
     paramtype = "light",
     paramtype2 = "wallmounted",
     sunlight_propagates = true,
-    light_source = 12,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1,
               not_in_creative_inventory = 1},
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.glass,
-    drop = "morelights_vintage:lantern_f"
 })
 
-minetest.register_node("morelights_vintage:hangingbulb", {
-    description = S("Vintage Hanging Light Bulb"),
+morelights.register_variants({
+    {
+        name = "morelights_vintage:hangingbulb",
+        description = S("Vintage Hanging Light Bulb"),
+        light_source = 10,
+        tiles = {
+            "morelights_vintage_hangingbulb.png" ..
+                    "^[lowpart:50:morelights_metal_dark_32.png"
+        }
+    },
+    {
+        name = "morelights_vintage:hangingbulb_dim",
+        description = S("Dim Vintage Hanging Light Bulb"),
+        light_source = 7,
+        tiles = {
+            "(morelights_vintage_hangingbulb.png^[multiply:#dddddd)" ..
+                    "^[lowpart:50:morelights_metal_dark_32.png"
+        }
+    }
+},
+{
     drawtype = "mesh",
     mesh = "morelights_vintage_hangingbulb.obj",
-    tiles = {
-        "morelights_vintage_hangingbulb.png" ..
-                "^[lowpart:50:morelights_metal_dark_32.png"
-    },
     inventory_image = "morelights_vintage_hangingbulb_inv.png",
     wield_image = "morelights_vintage_hangingbulb_inv.png",
     use_texture_alpha = "blend",
@@ -229,29 +313,52 @@ minetest.register_node("morelights_vintage:hangingbulb", {
     },
     paramtype = "light",
     sunlight_propagates = true,
-    light_source = 10,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
     _mcl_hardness = 0.15,
     sounds = morelights.sounds.glass
 })
 
-minetest.register_node("morelights_vintage:oillamp", {
-    description = S("Vintage Oil Lamp"),
+morelights.register_variants({
+    {
+        name = "morelights_vintage:oillamp",
+        description = S("Vintage Oil Lamp"),
+        light_source = 8,
+        tiles = {
+            {
+                name = "morelights_vintage_oil_flame.png",
+                animation = {
+                    type = "sheet_2d",
+                    frames_w = 16,
+                    frames_h = 1,
+                    frame_length = 0.3
+                }
+            },
+            "morelights_vintage_oillamp.png",
+            "morelights_vintage_brass_32.png"
+        }
+    },
+    {
+        name = "morelights_vintage:oillamp_dim",
+        description = S("Dim Vintage Oil Lamp"),
+        light_source = 5,
+        tiles = {
+            {
+                name = "morelights_vintage_oil_flame.png",
+                animation = {
+                    type = "sheet_2d",
+                    frames_w = 16,
+                    frames_h = 1,
+                    frame_length = 0.3
+                }
+            },
+            "morelights_vintage_oillamp.png^[multiply:#dddddd",
+            "morelights_vintage_brass_32.png"
+        }
+    }
+},
+{
     drawtype = "mesh",
     mesh = "morelights_vintage_oillamp.obj",
-    tiles = {
-        {
-            name = "morelights_vintage_oil_flame.png",
-            animation = {
-                type = "sheet_2d",
-                frames_w = 16,
-                frames_h = 1,
-                frame_length = 0.3
-            }
-        },
-        "morelights_vintage_oillamp.png",
-        "morelights_vintage_brass_32.png"
-    },
     use_texture_alpha = "clip",
     collision_box = {
         type = "fixed",
@@ -263,20 +370,34 @@ minetest.register_node("morelights_vintage:oillamp", {
     },
     paramtype = "light",
     sunlight_propagates = true,
-    light_source = 8,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.glass
 })
 
-minetest.register_node("morelights_vintage:chandelier", {
-    description = S("Vintage Chandelier"),
+morelights.register_variants({
+    {
+        name = "morelights_vintage:chandelier",
+        description = S("Vintage Chandelier"),
+        light_source = 10,
+        tiles = {
+            "morelights_vintage_chandelier.png",
+            "morelights_vintage_brass_32.png^[multiply:#DFDFDF"
+        },
+    },
+    {
+        name = "morelights_vintage:chandelier_dim",
+        description = S("Dim Vintage Chandelier"),
+        light_source = 7,
+        tiles = {
+            "morelights_vintage_chandelier.png^[multiply:#dddddd",
+            "morelights_vintage_brass_32.png^[multiply:#c1c1c1"
+        },
+    }
+},
+{
     drawtype = "mesh",
     mesh = "morelights_vintage_chandelier.obj",
-    tiles = {
-        "morelights_vintage_chandelier.png",
-        "morelights_vintage_brass_32.png^[multiply:#DFDFDF"
-    },
     use_texture_alpha = "clip",
     collision_box = {
         type = "fixed",
@@ -288,7 +409,6 @@ minetest.register_node("morelights_vintage:chandelier", {
     },
     paramtype = "light",
     sunlight_propagates = true,
-    light_source = 10,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
     _mcl_hardness = 0.3,
     sounds = morelights.sounds.glass
@@ -309,6 +429,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_vintage:block")
 minetest.register_craft({
     output = "morelights_vintage:block",
     recipe = {
@@ -318,6 +439,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_vintage:smallblock")
 minetest.register_craft({
     output = "morelights_vintage:smallblock",
     recipe = {
@@ -326,6 +448,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_vintage:lantern_f")
 minetest.register_craft({
     output = "morelights_vintage:lantern_f",
     recipe = {
@@ -335,6 +458,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_vintage:hangingbulb")
 minetest.register_craft({
     output = "morelights_vintage:hangingbulb",
     recipe = {
@@ -344,6 +468,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_vintage:oillamp")
 minetest.register_craft({
     output = "morelights_vintage:oillamp",
     recipe = {
@@ -353,6 +478,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_vintage:chandelier")
 minetest.register_craft({
     output = "morelights_vintage:chandelier",
     recipe = {
