@@ -8,32 +8,24 @@ morelights = {}
 --! @p variants is an array of incomplete node definitions,
 --! which will be inserted to @p fixedDef each.
 --!
---! Elements of @p variants additionally contain either a @c name field,
---! which becomes the node name, or a @c subvariants field,
---! which is an array the same way as @p variants itself.
+--! Elements of @p variants additionally contain a @c name field,
+--! which becomes the node name.
 function morelights.register_variants(variants, fixedDef)
     for _, variant in ipairs(variants) do
         local name = variant.name
-        local subvariants = variant.subvariants
         local def = table.copy(fixedDef)
 
         for k, v in pairs(variant) do
-            if k ~= "name" and k ~= "subvariants" then
+            if k ~= "name" then
                 def[k] = v
             end
         end
 
-        if subvariants then
-            for _, subvariant in ipairs(subvariants) do
-                morelights.register_variants(subvariant, def)
-            end
-        else
-            minetest.register_node(name, def)
-        end
+        minetest.register_node(name, def)
     end
 end
 
---! Makes `base_name .. "_dim"` craftable from `base_name`.
+--! Makes `base_name .. "_dim"` craftable from `base_name`, and reverse.
 function morelights.register_dim_recipe(base_name)
     minetest.register_craft({
         output = base_name .. "_dim",
