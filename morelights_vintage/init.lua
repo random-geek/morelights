@@ -80,13 +80,13 @@ morelights.register_variants({
         name = "morelights_vintage:block",
         description = S("Vintage Light Block"),
         light_source = minetest.LIGHT_MAX,
-        tiles = {"morelights_vintage_block.png"}
+        tiles = {"morelights_vintage_material.png^morelights_vintage_block.png"}
     },
     {
         name = "morelights_vintage:block_dim",
         description = S("Dim Vintage Light Block"),
         light_source = minetest.LIGHT_MAX - 5,
-        tiles = {"morelights_vintage_block.png^[multiply:#dddddd"}
+        tiles = {"morelights_vintage_material.png^(morelights_vintage_block.png^[multiply:#dddddd)"}
     }
 },
 {
