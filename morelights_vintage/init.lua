@@ -285,7 +285,9 @@ morelights.register_variants({
         tiles = {
             "morelights_vintage_hangingbulb.png" ..
                     "^[lowpart:50:morelights_metal_dark_32.png"
-        }
+        },
+        inventory_image = "morelights_vintage_hangingbulb_inv.png",
+        wield_image = "morelights_vintage_hangingbulb_inv.png"
     },
     {
         name = "morelights_vintage:hangingbulb_dim",
@@ -294,14 +296,14 @@ morelights.register_variants({
         tiles = {
             "(morelights_vintage_hangingbulb.png^[multiply:#dddddd)" ..
                     "^[lowpart:50:morelights_metal_dark_32.png"
-        }
+        },
+        inventory_image = "morelights_vintage_hangingbulb_dim_inv.png",
+        wield_image = "morelights_vintage_hangingbulb_dim_inv.png"
     }
 },
 {
     drawtype = "mesh",
     mesh = "morelights_vintage_hangingbulb.obj",
-    inventory_image = "morelights_vintage_hangingbulb_inv.png",
-    wield_image = "morelights_vintage_hangingbulb_inv.png",
     use_texture_alpha = "blend",
     collision_box = {
         type = "fixed",
