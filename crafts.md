@@ -358,3 +358,26 @@ For Hades Revisited, use fine sandstone.
 | Steel | Bulb | Steel |
 +-------+------+-------+
 ```
+
+## Dim Variants
+
+All lights are additionally available in a dim variant,
+which emits less light than the regular variant.
+
+To convert a light to the dim variant, do this:
+
+```
++---------------+---------------+
+| Regular Light | Regular Light |
++---------------+---------------+
+```
+
+To convert the dim variant back to the regular variant, do this:
+
+```
++-----------+
+| Dim Light |
++-----------+
+| Dim Light |
++-----------+
+```

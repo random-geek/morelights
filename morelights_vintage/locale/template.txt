@@ -3,8 +3,14 @@
 Brass Ingot=
 Brass Chain=
 Vintage Light Block=
+Dim Vintage Light Block=
 Vintage Light Block (small)=
+Dim Vintage Light Block (small)=
 Vintage Lantern (floor, wall, or ceiling)=
+Dim Vintage Lantern (floor, wall, or ceiling)=
 Vintage Hanging Light Bulb=
+Dim Vintage Hanging Light Bulb=
 Vintage Oil Lamp=
+Dim Vintage Oil Lamp=
 Vintage Chandelier=
+Dim Vintage Chandelier=

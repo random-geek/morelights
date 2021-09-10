@@ -1,7 +1,12 @@
 # textdomain:morelights_extras
 
 Futuristic Light Block=
+Dim Futuristic Light Block=
 Grass Light=
+Dim Grass Light=
 Stone Block Light=
+Dim Stone Block Light=
 Sandstone Block Light=
+Dim Sandstone Block Light=
 Stair Light (place on stairs)=
+Dim Stair Light (place on stairs)=
