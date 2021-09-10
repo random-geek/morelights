@@ -1,26 +1,40 @@
 local S = minetest.get_translator("morelights_extras")
 
 
-minetest.register_node("morelights_extras:f_block", {
-    description = S("Futuristic Light Block"),
-    tiles = {"morelights_extras_f_block.png"},
+morelights.register_variants({
+    {
+        name = "morelights_extras:f_block",
+        description = S("Futuristic Light Block"),
+        tiles = {"morelights_extras_f_block.png"},
+        light_source = minetest.LIGHT_MAX
+    },
+    {
+        name = "morelights_extras:f_block_dim",
+        description = S("Dim Futuristic Light Block"),
+        tiles = {"morelights_extras_f_block.png^[multiply:#dddddd"},
+        light_source = minetest.LIGHT_MAX - 5
+    }
+},
+{
     paramtype = "light",
-    light_source = minetest.LIGHT_MAX,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
     _mcl_hardness = 0.3,
     sounds = morelights.sounds.glass
 })
 
-do
+for _, dim in ipairs({false, true}) do
+    local dim_multiply = dim and "^[multiply:#dddddd" or ""
+    local dim_suffix = dim and "_dim" or ""
+
     local def = {
-        description = S("Grass Light"),
+        description = dim and S("Dim Grass Light") or S("Grass Light"),
         tiles = {
-            "default_grass.png^morelights_extras_blocklight.png",
+            ("default_grass.png^(morelights_extras_blocklight.png" .. dim_multiply .. ")"),
             "default_dirt.png",
             "default_dirt.png^default_grass_side.png"
         },
         paramtype = "light",
-        light_source = 12,
+        light_source = dim and 8 or 12,
         groups = {
             cracky = 2,
             oddly_breakable_by_hand = 3,
@@ -40,7 +54,10 @@ do
             {name = "default_dirt.png", color = "#FFFFFF"}
         }
         def.overlay_tiles = {
-            {name = "morelights_extras_blocklight.png", color = "#FFFFFF"},
+            {
+                name = ("morelights_extras_blocklight.png" .. dim_multiply),
+                color = "#FFFFFF"
+            },
             "",
             {
                 name = "mcl_core_grass_block_side_overlay.png",
@@ -51,7 +68,7 @@ do
         def.palette = "mcl_core_palette_grass.png"
         def.palette_index = 0
         def.color = "#55aa60"
-        def.drop = "morelights_extras:dirt_with_grass"
+        def.drop = "morelights_extras:dirt_with_grass" .. dim_suffix
 
         def.on_construct = function(pos)
             local node = minetest.get_node(pos)
@@ -59,7 +76,7 @@ do
                 local grass_node = mcl_core.get_grass_block_type(pos)
                 if grass_node.param2 ~= 0 then
                     minetest.set_node(pos, {
-                        name = "morelights_extras:dirt_with_grass",
+                        name = ("morelights_extras:dirt_with_grass" .. dim_suffix),
                         param2 = grass_node.param2
                     })
                 end
@@ -73,7 +90,10 @@ do
             {name = "default_dirt.png", color = "#FFFFFF"},
         }
         def.overlay_tiles = {
-            {name = "morelights_extras_blocklight.png", color = "#FFFFFF"},
+            {
+                name = ("morelights_extras_blocklight.png" .. dim_multiply),
+                color = "#FFFFFF"
+            },
             "",
             {
                 name = "hades_core_grass_side_cover_colorable.png",
@@ -87,7 +107,7 @@ do
         -- To enable seasonal grass coloring.
         def.groups.dirt_with_grass = 1
         -- To prevent color retention on digging.
-        def.drop = "morelights_extras:dirt_with_grass"
+        def.drop = "morelights_extras:dirt_with_grass" .. dim_suffix
 
         def.on_place = function(itemstack, placer, pointed_thing)
             local param2 = hades_core.get_seasonal_grass_color_param2()
@@ -95,7 +115,7 @@ do
         end
     end
 
-    minetest.register_node("morelights_extras:dirt_with_grass", def)
+    minetest.register_node("morelights_extras:dirt_with_grass" .. dim_suffix, def)
 end
 
 do
@@ -104,11 +124,22 @@ do
         tile = "mcl_stairs_stone_slab_top.png"
     end
 
-    minetest.register_node("morelights_extras:stone_block", {
-        description = S("Stone Block Light"),
-        tiles = {tile .. "^morelights_extras_blocklight.png"},
+    morelights.register_variants({
+        {
+            name = "morelights_extras:stone_block",
+            description = S("Stone Block Light"),
+            tiles = {tile .. "^morelights_extras_blocklight.png"},
+            light_source = 12
+        },
+        {
+            name = "morelights_extras:stone_block_dim",
+            description = S("Dim Stone Block Light"),
+            tiles = {tile .. "^(morelights_extras_blocklight.png^[multiply:#dddddd)"},
+            light_source = 8
+        }
+    },
+    {
         paramtype = "light",
-        light_source = 12,
         groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
         _mcl_hardness = 0.3,
         sounds = morelights.sounds.glass
@@ -123,19 +154,53 @@ do
         tile = "default_sandstone.png"
     end
 
-    minetest.register_node("morelights_extras:sandstone_block", {
-        description = S("Sandstone Block Light"),
-        tiles = {tile .. "^morelights_extras_blocklight.png"},
+    morelights.register_variants({
+        {
+            name = "morelights_extras:sandstone_block",
+            description = S("Sandstone Block Light"),
+            light_source = 12,
+            tiles = {tile .. "^morelights_extras_blocklight.png"}
+        },
+        {
+            name = "morelights_extras:sandstone_block_dim",
+            description = S("Dim Sandstone Block Light"),
+            light_source = 8,
+            tiles = {tile .. "^(morelights_extras_blocklight.png^[multiply:#dddddd)"}
+        },
+    },
+    {
         paramtype = "light",
-        light_source = 12,
         groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
         _mcl_hardness = 0.3,
         sounds = morelights.sounds.glass
     })
 end
 
-minetest.register_node("morelights_extras:stairlight", {
-    description = S("Stair Light (place on stairs)"),
+morelights.register_variants({
+    {
+        name = "morelights_extras:stairlight",
+        description = S("Stair Light (place on stairs)"),
+        light_source = 10,
+        overlay_tiles = {
+            "",
+            "morelights_extras_stairlight.png",
+            "", "",
+            "morelights_extras_stairlight.png"
+        },
+    },
+    {
+        name = "morelights_extras:stairlight_dim",
+        description = S("Dim Stair Light (place on stairs)"),
+        light_source = 7,
+        overlay_tiles = {
+            "",
+            "morelights_extras_stairlight.png^[multiply:#dddddd",
+            "", "",
+            "morelights_extras_stairlight.png^[multiply:#dddddd"
+        },
+    }
+},
+{
     drawtype = "nodebox",
     node_box = {
         type = "fixed",
@@ -147,13 +212,10 @@ minetest.register_node("morelights_extras:stairlight", {
     },
     walkable = false,
     tiles = {"morelights_metal_dark.png"},
-    overlay_tiles = {"", "morelights_extras_stairlight.png",
-            "", "", "morelights_extras_stairlight.png"},
     inventory_image = "morelights_extras_stairlight_inv.png",
     wield_image = "morelights_extras_stairlight_inv.png",
     paramtype = "light",
     paramtype2 = "facedir",
-    light_source = 10,
     sunlight_propagates = true,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1,
               attached_node = 1},
@@ -200,6 +262,7 @@ minetest.register_node("morelights_extras:stairlight", {
 
 local a = morelights.craft_items
 
+morelights.register_dim_recipe("morelights_extras:f_block")
 minetest.register_craft({
     output = "morelights_extras:f_block",
     recipe = {
@@ -209,6 +272,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_extras:dirt_with_grass")
 minetest.register_craft({
     output = "morelights_extras:dirt_with_grass",
     recipe = {
@@ -218,6 +282,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_extras:stone_block")
 minetest.register_craft({
     output = "morelights_extras:stone_block",
     recipe = {
@@ -227,6 +292,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_extras:sandstone_block")
 minetest.register_craft({
     output = "morelights_extras:sandstone_block",
     recipe = {
@@ -236,6 +302,7 @@ minetest.register_craft({
     }
 })
 
+morelights.register_dim_recipe("morelights_extras:stairlight")
 minetest.register_craft({
     output = "morelights_extras:stairlight",
     recipe = {
