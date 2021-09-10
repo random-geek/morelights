@@ -187,6 +187,8 @@ morelights.register_variants({
             "", "",
             "morelights_extras_stairlight.png"
         },
+        inventory_image = "morelights_extras_stairlight_inv.png",
+        wield_image = "morelights_extras_stairlight_inv.png"
     },
     {
         name = "morelights_extras:stairlight_dim",
@@ -198,6 +200,8 @@ morelights.register_variants({
             "", "",
             "morelights_extras_stairlight.png^[multiply:#dddddd"
         },
+        inventory_image = "morelights_extras_stairlight_dim_inv.png",
+        wield_image = "morelights_extras_stairlight_dim_inv.png"
     }
 },
 {
@@ -212,8 +216,6 @@ morelights.register_variants({
     },
     walkable = false,
     tiles = {"morelights_metal_dark.png"},
-    inventory_image = "morelights_extras_stairlight_inv.png",
-    wield_image = "morelights_extras_stairlight_inv.png",
     paramtype = "light",
     paramtype2 = "facedir",
     sunlight_propagates = true,
