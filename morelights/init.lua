@@ -28,11 +28,11 @@ end
 --! Makes `base_name .. "_dim"` craftable from `base_name`, and reverse.
 function morelights.register_dim_recipe(base_name)
     minetest.register_craft({
-        output = base_name .. "_dim",
+        output = base_name .. "_dim 2",
         recipe = {{base_name, base_name}}
     })
     minetest.register_craft({
-        output = base_name,
+        output = base_name .. " 2",
         recipe = {{base_name .. "_dim"}, {base_name .. "_dim"}}
     })
 end
