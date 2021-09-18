@@ -77,7 +77,7 @@ minetest.register_node("morelights_vintage:chain_ceiling_b", {
 
 minetest.register_node("morelights_vintage:block", {
     description = S("Vintage Light Block"),
-    tiles = {"morelights_vintage_block.png"},
+    tiles = {"morelights_vintage_material.png^morelights_vintage_block.png"},
     paramtype = "light",
     light_source = minetest.LIGHT_MAX,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
@@ -93,9 +93,9 @@ minetest.register_node("morelights_vintage:smallblock", {
         fixed = {-1/4, -1/2, -1/4, 1/4, 0, 1/4}
     },
     tiles = {
-        "morelights_vintage_block.png",
-        "morelights_vintage_block.png",
-        "[combine:16x16:0,4=morelights_vintage_block.png"
+        "morelights_vintage_material.png^morelights_vintage_block.png",
+        "morelights_vintage_material.png^morelights_vintage_block.png",
+        "[combine:16x16:0,4=(morelights_vintage_material.png\\^morelights_vintage_block.png)"
     },
     use_texture_alpha = "opaque",
     paramtype = "light",
