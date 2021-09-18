@@ -102,9 +102,9 @@ morelights.register_variants({
         description = S("Vintage Light Block (small)"),
         light_source = 12,
         tiles = {
-            "morelights_vintage_block.png",
-            "morelights_vintage_block.png",
-            "[combine:16x16:0,4=morelights_vintage_block.png"
+            "morelights_vintage_material.png^morelights_vintage_block.png",
+            "morelights_vintage_material.png^morelights_vintage_block.png",
+            "[combine:16x16:0,4=(morelights_vintage_material.png^morelights_vintage_block.png)"
         }
     },
     {
@@ -112,9 +112,9 @@ morelights.register_variants({
         description = S("Dim Vintage Light Block (small)"),
         light_source = 8,
         tiles = {
-            "morelights_vintage_block.png^[multiply:#dddddd",
-            "morelights_vintage_block.png^[multiply:#dddddd",
-            "[combine:16x16:0,4=morelights_vintage_block.png\\^[multiply\\:#dddddd"
+            "morelights_vintage_material.png^(morelights_vintage_block.png^[multiply:#dddddd)",
+            "morelights_vintage_material.png^(morelights_vintage_block.png^[multiply:#dddddd)",
+            "[combine:16x16:0,4=(morelights_vintage_material.png\\^morelights_vintage_block.png\\^[multiply\\:#dddddd)"
         }
     }
 },
