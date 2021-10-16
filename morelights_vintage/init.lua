@@ -116,7 +116,7 @@ minetest.register_node("morelights_vintage:lantern_f", {
     drawtype = "mesh",
     mesh = "morelights_vintage_lantern_f.obj",
     tiles = {
-        "morelights_vintage_lantern_background.png^morelights_vintage_lantern_foreground.png",
+        "morelights_vintage_lantern_frame.png^morelights_vintage_lantern_glass.png",
         "morelights_metal_dark_32.png"
     },
     use_texture_alpha = "opaque",
@@ -159,7 +159,7 @@ minetest.register_node("morelights_vintage:lantern_c", {
     drawtype = "mesh",
     mesh = "morelights_vintage_lantern_c.obj",
     tiles = {
-        "morelights_vintage_lantern_background.png^morelights_vintage_lantern_foreground.png",
+        "morelights_vintage_lantern_frame.png^morelights_vintage_lantern_glass.png",
         "morelights_metal_dark_32.png"
     },
     use_texture_alpha = "opaque",
@@ -185,7 +185,7 @@ minetest.register_node("morelights_vintage:lantern_w", {
     drawtype = "mesh",
     mesh = "morelights_vintage_lantern_w.obj",
     tiles = {
-        "morelights_vintage_lantern_background.png^morelights_vintage_lantern_foreground.png",
+        "morelights_vintage_lantern_frame.png^morelights_vintage_lantern_glass.png",
         "morelights_metal_dark_32.png"
     },
     use_texture_alpha = "clip",
