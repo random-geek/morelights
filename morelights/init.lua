@@ -150,6 +150,9 @@ end
 if minetest.get_modpath("basic_materials") then
     a.brass = "basic_materials:brass_ingot"
 end
+if minetest.get_modpath("hades_extramaterials") then
+    a.brass = "hades_extramaterials:brass_ingot"
+end
 
 local path = minetest.get_modpath("morelights")
 dofile(path .. "/nodes.lua")
