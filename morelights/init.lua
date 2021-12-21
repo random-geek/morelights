@@ -149,6 +149,8 @@ end
 -- Use basic_materials brass if available, otherwise register our own.
 if minetest.get_modpath("basic_materials") then
     a.brass = "basic_materials:brass_ingot"
+elseif minetest.get_modpath("hades_extramaterials") then
+    a.brass = "hades_extramaterials:brass_ingot"
 end
 
 local path = minetest.get_modpath("morelights")
