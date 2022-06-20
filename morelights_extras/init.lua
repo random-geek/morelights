@@ -137,7 +137,7 @@ end
 local has_new_stairsplus = minetest.get_modpath("stairsplus") and stairsplus.api
 
 local function is_stair(node)
-    if node.param2 < 4 then
+    if node.param2 >= 4 then
         return false
 
     elseif (node.name:match("^stairs:stair_") or node.name:match("^mcl_stairs:stair_")) then
