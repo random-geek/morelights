@@ -140,13 +140,13 @@ local function is_stair(node)
     if node.param2 >= 4 then
         return false
 
-    elseif (node.name:match("^stairs:stair_") or node.name:match("^mcl_stairs:stair_")) then
+    elseif node.name:match("^stairs:stair_") or node.name:match("^mcl_stairs:stair_") then
         return true
 
     elseif has_new_stairsplus then
         local shape = stairsplus.api.get_shape_of_shaped_node(node.name)
-        local shape_def = api.registered_shapes[shape]
-        if shape_def and shape_def.groups.stair then
+        local shape_def = stairsplus.api.registered_shapes[shape]
+        if shape_def and shape_def.shape_groups.stair then
             return true
         end
     end
