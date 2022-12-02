@@ -177,11 +177,12 @@ minetest.register_node("morelights_extras:stairlight", {
             end
         end
 
-        if node.param2 < 4
-                and (node.name:match("^stairs:stair_")
-                  or node.name:match("^mcl_stairs:stair_")
-                  or node.name:match("^hades_stairs:stair_")
-                  or (minetest.get_item_group(node.name,"support_stairlight")>0)) then
+        if node.param2 < 4 and (
+                node.name:match("^stairs:stair_")
+                or node.name:match("^mcl_stairs:stair_")
+                or node.name:match("^hades_stairs:stair_")
+                or minetest.get_item_group(node.name, "morelights_supports_stairlight") ~= 0
+        ) then
             -- Set `above` to the node actually above the stair, since that's
             -- where the node is placed.
             pointed_thing.above =
