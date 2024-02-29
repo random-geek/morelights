@@ -7,6 +7,8 @@ function morelights.register_variants(variants, fixedDef)
         local name = variant.name
         local def = table.copy(fixedDef)
 
+        def.is_ground_content = def.is_ground_content == true
+
         for k, v in pairs(variant) do
             if k ~= "name" then
                 def[k] = v

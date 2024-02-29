@@ -7,6 +7,7 @@ minetest.register_node("morelights_modern:block", {
     paramtype = "light",
     light_source = minetest.LIGHT_MAX,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    is_ground_content = false,
     _mcl_hardness = 0.3,
     sounds = morelights.sounds.glass
 })
@@ -29,6 +30,7 @@ minetest.register_node("morelights_modern:smallblock", {
     sunlight_propagates = true,
     light_source = 12,
     groups = {cracky = 3, oddly_breakable_by_hand = 3, handy = 1},
+    is_ground_content = false,
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.glass,
 
@@ -132,6 +134,7 @@ minetest.register_node("morelights_modern:barlight_c", {
     sunlight_propagates = true,
     light_source = minetest.LIGHT_MAX,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1, not_blocking_trains = 1},
+    is_ground_content = false,
     _mcl_hardness = 0.15,
     sounds = morelights.sounds.glass
 })
@@ -154,6 +157,7 @@ minetest.register_node("morelights_modern:barlight_s", {
     sunlight_propagates = true,
     light_source = minetest.LIGHT_MAX,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1, not_blocking_trains = 1},
+    is_ground_content = false,
     _mcl_hardness = 0.15,
     sounds = morelights.sounds.glass
 })
@@ -174,6 +178,7 @@ minetest.register_node("morelights_modern:ceilinglight", {
     sunlight_propagates = true,
     light_source = minetest.LIGHT_MAX,
     groups = {cracky = 3, oddly_breakable_by_hand = 3, handy = 1, not_blocking_trains = 1},
+    is_ground_content = false,
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.glass,
 
@@ -232,6 +237,7 @@ minetest.register_node("morelights_modern:walllamp", {
     sunlight_propagates = true,
     light_source = 12,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    is_ground_content = false,
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.glass,
 

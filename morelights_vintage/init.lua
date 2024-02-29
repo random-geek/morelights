@@ -39,6 +39,7 @@ minetest.register_node("morelights_vintage:chain_b", {
     sunlight_propagates = true,
     groups = {cracky = 3, oddly_breakable_by_hand = 3, handy = 1,
               mounted_ceiling = 1},
+    is_ground_content = false,
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.metal,
 
@@ -71,6 +72,7 @@ minetest.register_node("morelights_vintage:chain_ceiling_b", {
     sunlight_propagates = true,
     groups = {cracky = 3, oddly_breakable_by_hand = 3, handy = 1,
               mounted_ceiling = 1, mounted_ceiling = 1},
+    is_ground_content = false,
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.metal
 })
@@ -81,6 +83,7 @@ minetest.register_node("morelights_vintage:block", {
     paramtype = "light",
     light_source = minetest.LIGHT_MAX,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    is_ground_content = false,
     _mcl_hardness = 0.3,
     sounds = morelights.sounds.glass
 })
@@ -104,6 +107,7 @@ minetest.register_node("morelights_vintage:smallblock", {
     sunlight_propagates = true,
     light_source = 12,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    is_ground_content = false,
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.glass,
 
@@ -133,6 +137,7 @@ minetest.register_node("morelights_vintage:lantern_f", {
     sunlight_propagates = true,
     light_source = 12,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    is_ground_content = false,
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.glass,
 
@@ -177,6 +182,7 @@ minetest.register_node("morelights_vintage:lantern_c", {
     light_source = 12,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1,
               not_in_creative_inventory = 1},
+    is_ground_content = false,
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.glass,
     drop = "morelights_vintage:lantern_f"
@@ -204,6 +210,7 @@ minetest.register_node("morelights_vintage:lantern_w", {
     light_source = 12,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1,
               not_in_creative_inventory = 1},
+    is_ground_content = false,
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.glass,
     drop = "morelights_vintage:lantern_f"
@@ -232,6 +239,7 @@ minetest.register_node("morelights_vintage:hangingbulb", {
     sunlight_propagates = true,
     light_source = 10,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    is_ground_content = false,
     _mcl_hardness = 0.15,
     sounds = morelights.sounds.glass
 })
@@ -266,6 +274,7 @@ minetest.register_node("morelights_vintage:oillamp", {
     sunlight_propagates = true,
     light_source = 8,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    is_ground_content = false,
     _mcl_hardness = 0.2,
     sounds = morelights.sounds.glass
 })
@@ -291,6 +300,7 @@ minetest.register_node("morelights_vintage:chandelier", {
     sunlight_propagates = true,
     light_source = 10,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    is_ground_content = false,
     _mcl_hardness = 0.3,
     sounds = morelights.sounds.glass
 })
