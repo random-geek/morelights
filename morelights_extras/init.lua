@@ -7,6 +7,7 @@ minetest.register_node("morelights_extras:f_block", {
     paramtype = "light",
     light_source = minetest.LIGHT_MAX,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+    is_ground_content = false,
     _mcl_hardness = 0.3,
     sounds = morelights.sounds.glass
 })
@@ -27,6 +28,7 @@ do
             handy = 1,
             soil = 1,
         },
+        is_ground_content = false,
         _mcl_hardness = 0.3,
         sounds = morelights.sounds.glass
     }
@@ -110,6 +112,7 @@ do
         paramtype = "light",
         light_source = 12,
         groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+        is_ground_content = false,
         _mcl_hardness = 0.3,
         sounds = morelights.sounds.glass
     })
@@ -129,6 +132,7 @@ do
         paramtype = "light",
         light_source = 12,
         groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1},
+        is_ground_content = false,
         _mcl_hardness = 0.3,
         sounds = morelights.sounds.glass
     })
@@ -157,6 +161,7 @@ minetest.register_node("morelights_extras:stairlight", {
     sunlight_propagates = true,
     groups = {cracky = 2, oddly_breakable_by_hand = 3, handy = 1,
               attached_node = 1},
+    is_ground_content = false,
     _mcl_hardness = 0.15,
     node_placement_prediction = "",
     sounds = morelights.sounds.glass,
